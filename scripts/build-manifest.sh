@@ -7,13 +7,13 @@ set -o errexit
 court_staging=
 court_rinkeby=0x35e7433141D5f7f2EB7081186f5284dCDD2ccacE
 court_xdai=0x44E4fCFed14E1285c9e0F6eae77D5fDd0F196f85
-court_polygon=0x0ED8867EDaBD4d0b5045E45a39077D97a6B78cbE
+court_polygon=0xf0C8376065fadfACB706caFbaaC96B321069C015
 
 # Known block numbers
 start_block_staging=
 start_block_rinkeby=8250225
 start_block_xdai=14861364
-start_block_polygon=21700000
+start_block_polygon=21936374
 
 # Validate network
 networks=(rpc staging rinkeby xdai polygon)
