@@ -13,6 +13,7 @@
     "build:manifest:rpc": "NETWORK=rpc npm run build:manifest",
     "build:manifest:staging": "NETWORK=staging npm run build:manifest",
     "build:manifest:rinkeby": "NETWORK=rinkeby npm run build:manifest",
+    "build:manifest:goerli": "NETWORK=goerli npm run build:manifest",
     "build:manifest:xdai": "NETWORK=xdai npm run build:manifest",
     "build:manifest:polygon": "NETWORK=polygon npm run build:manifest",
     "codegen": "./scripts/codegen.sh",
@@ -20,12 +21,14 @@
     "codegen:ropsten": "NETWORK=ropsten npm run codegen",
     "codegen:staging": "NETWORK=staging npm run codegen",
     "codegen:rinkeby": "NETWORK=rinkeby npm run codegen",
+    "codegen:goerli": "NETWORK=goerli npm run codegen",
     "codegen:xdai": "NETWORK=xdai npm run codegen",
     "codegen:polygon": "NETWORK=polygon npm run codegen",
     "deploy": "./scripts/deploy.sh",
     "deploy:rpc": "NETWORK=rpc npm run deploy",
     "deploy:staging": "NETWORK=staging npm run deploy",
     "deploy:rinkeby": "NETWORK=rinkeby npm run deploy",
+    "deploy:goerli": "NETWORK=goerli npm run deploy",
     "deploy:xdai": "NETWORK=xdai npm run deploy",
     "deploy:polygon": "NETWORK=polygon npm run deploy"
   },
@@ -35,7 +38,7 @@
   "dependencies": {
     "@aragon/court": "1.1.3",
     "@aragon/minime": "1.0.0",
-    "@graphprotocol/graph-cli": "^0.18.0",
-    "@graphprotocol/graph-ts": "^0.18.0"
+    "@graphprotocol/graph-cli": "^0.37.2",
+    "@graphprotocol/graph-ts": "^0.29.1"
   }
 }

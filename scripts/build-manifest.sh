@@ -7,6 +7,7 @@ set -o errexit
 court_staging=
 court_rinkeby=0xC2224D785D4e4bc92D5be6767A82d026ca2813fD
 court_xdai=0x44E4fCFed14E1285c9e0F6eae77D5fDd0F196f85
+court_goerli=
 court_polygon=0xf0C8376065fadfACB706caFbaaC96B321069C015
 
 # Known block numbers
