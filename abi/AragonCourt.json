@@ -3,57 +3,15 @@
     "constant": true,
     "inputs": [],
     "name": "getCurrentTermId",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint64"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "getVoting",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "getTermDuration",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint64"
-      }
-    ],
+    "outputs": [{ "name": "", "type": "uint64" }],
     "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
     "constant": false,
-    "inputs": [
-      {
-        "name": "_ids",
-        "type": "bytes32[]"
-      },
-      {
-        "name": "_addresses",
-        "type": "address[]"
-      }
-    ],
-    "name": "setModules",
+    "inputs": [{ "name": "_owner", "type": "address" }],
+    "name": "setOwner",
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
@@ -61,19 +19,30 @@
   },
   {
     "constant": true,
+    "inputs": [],
+    "name": "getVoting",
+    "outputs": [{ "name": "", "type": "address" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
     "inputs": [
-      {
-        "name": "_holder",
-        "type": "address"
-      }
+      { "name": "_disputeId", "type": "uint256" },
+      { "name": "_state", "type": "uint8" }
     ],
-    "name": "areWithdrawalsAllowedFor",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
+    "name": "decideDispute",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getTermDuration",
+    "outputs": [{ "name": "", "type": "uint64" }],
     "payable": false,
     "stateMutability": "view",
     "type": "function"
@@ -82,12 +51,7 @@
     "constant": true,
     "inputs": [],
     "name": "getTreasury",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "name": "", "type": "address" }],
     "payable": false,
     "stateMutability": "view",
     "type": "function"
@@ -96,12 +60,7 @@
     "constant": true,
     "inputs": [],
     "name": "getSubscriptions",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "name": "", "type": "address" }],
     "payable": false,
     "stateMutability": "view",
     "type": "function"
@@ -110,66 +69,23 @@
     "constant": true,
     "inputs": [],
     "name": "getFundsGovernor",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "name": "", "type": "address" }],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [],
-    "name": "ensureCurrentTerm",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint64"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
     "constant": true,
     "inputs": [],
     "name": "getModulesGovernor",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "getNeededTermTransitions",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint64"
-      }
-    ],
+    "outputs": [{ "name": "", "type": "address" }],
     "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
     "constant": false,
-    "inputs": [
-      {
-        "name": "_newFeesUpdater",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "name": "_newFeesUpdater", "type": "address" }],
     "name": "changeFeesUpdater",
     "outputs": [],
     "payable": false,
@@ -179,14 +95,8 @@
   {
     "constant": false,
     "inputs": [
-      {
-        "name": "_id",
-        "type": "bytes32"
-      },
-      {
-        "name": "_addr",
-        "type": "address"
-      }
+      { "name": "_id", "type": "bytes32" },
+      { "name": "_addr", "type": "address" }
     ],
     "name": "setModule",
     "outputs": [],
@@ -196,95 +106,11 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "_termId",
-        "type": "uint64"
-      }
-    ],
-    "name": "getTermRandomness",
+    "inputs": [{ "name": "", "type": "uint256" }],
+    "name": "disputes",
     "outputs": [
-      {
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_termId",
-        "type": "uint64"
-      }
-    ],
-    "name": "getDraftConfig",
-    "outputs": [
-      {
-        "name": "feeToken",
-        "type": "address"
-      },
-      {
-        "name": "draftFee",
-        "type": "uint256"
-      },
-      {
-        "name": "penaltyPct",
-        "type": "uint16"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "getConfigChangeTermId",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint64"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "getBrightIdRegister",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "getDisputeFees",
-    "outputs": [
-      {
-        "name": "recipient",
-        "type": "address"
-      },
-      {
-        "name": "feeToken",
-        "type": "address"
-      },
-      {
-        "name": "feeAmount",
-        "type": "uint256"
-      }
+      { "name": "subject", "type": "address" },
+      { "name": "state", "type": "uint8" }
     ],
     "payable": false,
     "stateMutability": "view",
@@ -293,18 +119,10 @@
   {
     "constant": false,
     "inputs": [
-      {
-        "name": "_disputeId",
-        "type": "uint256"
-      },
-      {
-        "name": "_submitter",
-        "type": "address"
-      },
-      {
-        "name": "_evidence",
-        "type": "bytes"
-      }
+      { "name": "_subject", "type": "address" },
+      { "name": "_disputeId", "type": "uint256" },
+      { "name": "_submitter", "type": "address" },
+      { "name": "_evidence", "type": "bytes" }
     ],
     "name": "submitEvidence",
     "outputs": [],
@@ -313,42 +131,36 @@
     "type": "function"
   },
   {
-    "constant": false,
+    "constant": true,
     "inputs": [],
-    "name": "ensureCurrentTermRandomness",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
+    "name": "feeToken",
+    "outputs": [{ "name": "", "type": "address" }],
     "payable": false,
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "feeAmount",
+    "outputs": [{ "name": "", "type": "uint256" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getBrightIdRegister",
+    "outputs": [{ "name": "", "type": "address" }],
+    "payable": false,
+    "stateMutability": "view",
     "type": "function"
   },
   {
     "constant": false,
-    "inputs": [
-      {
-        "name": "_disputeId",
-        "type": "uint256"
-      }
-    ],
-    "name": "closeEvidencePeriod",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_allowed",
-        "type": "bool"
-      }
-    ],
-    "name": "setAutomaticWithdrawals",
+    "inputs": [{ "name": "_disputeId", "type": "uint256" }],
+    "name": "draft",
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
@@ -356,18 +168,12 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "_termId",
-        "type": "uint64"
-      }
-    ],
-    "name": "getTermTokenTotalSupply",
+    "inputs": [],
+    "name": "getDisputeFees",
     "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
+      { "name": "", "type": "address" },
+      { "name": "", "type": "address" },
+      { "name": "", "type": "uint256" }
     ],
     "payable": false,
     "stateMutability": "view",
@@ -375,19 +181,9 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "_id",
-        "type": "bytes32"
-      }
-    ],
+    "inputs": [{ "name": "_id", "type": "bytes32" }],
     "name": "getModule",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "name": "", "type": "address" }],
     "payable": false,
     "stateMutability": "view",
     "type": "function"
@@ -402,13 +198,17 @@
     "type": "function"
   },
   {
+    "constant": true,
+    "inputs": [],
+    "name": "owner",
+    "outputs": [{ "name": "", "type": "address" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "constant": false,
-    "inputs": [
-      {
-        "name": "_newFundsGovernor",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "name": "_newFundsGovernor", "type": "address" }],
     "name": "changeFundsGovernor",
     "outputs": [],
     "payable": false,
@@ -419,31 +219,7 @@
     "constant": true,
     "inputs": [],
     "name": "getJurorsRegistry",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_termId",
-        "type": "uint64"
-      }
-    ],
-    "name": "getMinActiveBalance",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "outputs": [{ "name": "", "type": "address" }],
     "payable": false,
     "stateMutability": "view",
     "type": "function"
@@ -452,31 +228,25 @@
     "constant": true,
     "inputs": [],
     "name": "getConfigGovernor",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "name": "", "type": "address" }],
     "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
     "constant": false,
-    "inputs": [
-      {
-        "name": "_maxRequestedTransitions",
-        "type": "uint64"
-      }
-    ],
+    "inputs": [{ "name": "_maxRequestedTransitions", "type": "uint64" }],
     "name": "heartbeat",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint64"
-      }
-    ],
+    "outputs": [{ "name": "", "type": "uint64" }],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [{ "name": "_termDuration", "type": "uint64" }],
+    "name": "setTermDuration",
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -485,54 +255,19 @@
     "constant": true,
     "inputs": [],
     "name": "getFeesUpdater",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "name": "", "type": "address" }],
     "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
     "constant": false,
-    "inputs": [
-      {
-        "name": "_fromTermId",
-        "type": "uint64"
-      },
-      {
-        "name": "_feeToken",
-        "type": "address"
-      },
-      {
-        "name": "_fees",
-        "type": "uint256[3]"
-      },
-      {
-        "name": "_maxRulingOptions",
-        "type": "uint8"
-      },
-      {
-        "name": "_roundParams",
-        "type": "uint64[9]"
-      },
-      {
-        "name": "_pcts",
-        "type": "uint16[2]"
-      },
-      {
-        "name": "_appealCollateralParams",
-        "type": "uint256[2]"
-      },
-      {
-        "name": "_jurorsParams",
-        "type": "uint256[3]"
-      }
+    "inputs": [{ "name": "_disputeId", "type": "uint256" }],
+    "name": "computeRuling",
+    "outputs": [
+      { "name": "subject", "type": "address" },
+      { "name": "finalRuling", "type": "uint8" }
     ],
-    "name": "setConfig",
-    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -540,22 +275,23 @@
   {
     "constant": false,
     "inputs": [
-      {
-        "name": "_possibleRulings",
-        "type": "uint256"
-      },
-      {
-        "name": "_metadata",
-        "type": "bytes"
-      }
+      { "name": "_possibleRulings", "type": "uint256" },
+      { "name": "_metadata", "type": "bytes" }
     ],
     "name": "createDispute",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
+    "outputs": [{ "name": "", "type": "uint256" }],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      { "name": "_subject", "type": "address" },
+      { "name": "_disputeId", "type": "uint256" }
     ],
+    "name": "closeEvidencePeriod",
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -571,12 +307,7 @@
   },
   {
     "constant": false,
-    "inputs": [
-      {
-        "name": "_newModulesGovernor",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "name": "_newModulesGovernor", "type": "address" }],
     "name": "changeModulesGovernor",
     "outputs": [],
     "payable": false,
@@ -585,12 +316,7 @@
   },
   {
     "constant": false,
-    "inputs": [
-      {
-        "name": "_newConfigGovernor",
-        "type": "address"
-      }
-    ],
+    "inputs": [{ "name": "_newConfigGovernor", "type": "address" }],
     "name": "changeConfigGovernor",
     "outputs": [],
     "payable": false,
@@ -599,22 +325,11 @@
   },
   {
     "constant": false,
-    "inputs": [
-      {
-        "name": "_disputeId",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [{ "name": "_disputeId", "type": "uint256" }],
     "name": "rule",
     "outputs": [
-      {
-        "name": "subject",
-        "type": "address"
-      },
-      {
-        "name": "ruling",
-        "type": "uint256"
-      }
+      { "name": "subject", "type": "address" },
+      { "name": "ruling", "type": "uint256" }
     ],
     "payable": false,
     "stateMutability": "nonpayable",
@@ -624,99 +339,23 @@
     "constant": true,
     "inputs": [],
     "name": "getDisputeManager",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "name": "", "type": "address" }],
     "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "_termId",
-        "type": "uint64"
-      }
-    ],
+    "inputs": [{ "name": "_termId", "type": "uint64" }],
     "name": "getConfig",
     "outputs": [
-      {
-        "name": "feeToken",
-        "type": "address"
-      },
-      {
-        "name": "fees",
-        "type": "uint256[3]"
-      },
-      {
-        "name": "maxRulingOptions",
-        "type": "uint8"
-      },
-      {
-        "name": "roundParams",
-        "type": "uint64[9]"
-      },
-      {
-        "name": "pcts",
-        "type": "uint16[2]"
-      },
-      {
-        "name": "appealCollateralParams",
-        "type": "uint256[2]"
-      },
-      {
-        "name": "jurorsParams",
-        "type": "uint256[3]"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_newFirstTermStartTime",
-        "type": "uint64"
-      }
-    ],
-    "name": "delayStartTime",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_termId",
-        "type": "uint64"
-      }
-    ],
-    "name": "getTerm",
-    "outputs": [
-      {
-        "name": "startTime",
-        "type": "uint64"
-      },
-      {
-        "name": "randomnessBN",
-        "type": "uint64"
-      },
-      {
-        "name": "randomness",
-        "type": "bytes32"
-      },
-      {
-        "name": "celesteTokenTotalSupply",
-        "type": "uint256"
-      }
+      { "name": "_feeToken", "type": "address" },
+      { "name": "fees", "type": "uint256[3]" },
+      { "name": "maxRulingOptions", "type": "uint8" },
+      { "name": "roundParams", "type": "uint64[9]" },
+      { "name": "pcts", "type": "uint16[2]" },
+      { "name": "appealCollateralParams", "type": "uint256[2]" },
+      { "name": "jurorsParams", "type": "uint256[4]" }
     ],
     "payable": false,
     "stateMutability": "view",
@@ -725,12 +364,30 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "getLastEnsuredTermId",
+    "name": "currentId",
+    "outputs": [{ "name": "", "type": "uint256" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [{ "name": "_newFirstTermStartTime", "type": "uint64" }],
+    "name": "delayStartTime",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [{ "name": "_termId", "type": "uint64" }],
+    "name": "getTerm",
     "outputs": [
-      {
-        "name": "",
-        "type": "uint64"
-      }
+      { "name": "startTime", "type": "uint64" },
+      { "name": "randomnessBN", "type": "uint64" },
+      { "name": "randomness", "type": "bytes32" },
+      { "name": "celesteTokenTotalSupply", "type": "uint256" }
     ],
     "payable": false,
     "stateMutability": "view",
@@ -738,42 +395,8 @@
   },
   {
     "inputs": [
-      {
-        "name": "_termParams",
-        "type": "uint64[2]"
-      },
-      {
-        "name": "_governors",
-        "type": "address[4]"
-      },
-      {
-        "name": "_feeToken",
-        "type": "address"
-      },
-      {
-        "name": "_fees",
-        "type": "uint256[3]"
-      },
-      {
-        "name": "_maxRulingOptions",
-        "type": "uint8"
-      },
-      {
-        "name": "_roundParams",
-        "type": "uint64[9]"
-      },
-      {
-        "name": "_pcts",
-        "type": "uint16[2]"
-      },
-      {
-        "name": "_appealCollateralParams",
-        "type": "uint256[2]"
-      },
-      {
-        "name": "_jurorsParams",
-        "type": "uint256[3]"
-      }
+      { "name": "_feeToken", "type": "address" },
+      { "name": "_feeAmount", "type": "uint256" }
     ],
     "payable": false,
     "stateMutability": "nonpayable",
@@ -782,135 +405,8 @@
   {
     "anonymous": false,
     "inputs": [
-      {
-        "indexed": false,
-        "name": "id",
-        "type": "bytes32"
-      },
-      {
-        "indexed": false,
-        "name": "addr",
-        "type": "address"
-      }
-    ],
-    "name": "ModuleSet",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "previousGovernor",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "currentGovernor",
-        "type": "address"
-      }
-    ],
-    "name": "FundsGovernorChanged",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "previousGovernor",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "currentGovernor",
-        "type": "address"
-      }
-    ],
-    "name": "ConfigGovernorChanged",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "previousFeesUpdater",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "currentFeesUpdater",
-        "type": "address"
-      }
-    ],
-    "name": "FeesUpdaterChanged",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "previousGovernor",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "currentGovernor",
-        "type": "address"
-      }
-    ],
-    "name": "ModulesGovernorChanged",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "fromTermId",
-        "type": "uint64"
-      },
-      {
-        "indexed": false,
-        "name": "courtConfigId",
-        "type": "uint64"
-      }
-    ],
-    "name": "NewConfig",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "holder",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "allowed",
-        "type": "bool"
-      }
-    ],
-    "name": "AutomaticWithdrawalsAllowedChanged",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "previousTermId",
-        "type": "uint64"
-      },
-      {
-        "indexed": false,
-        "name": "currentTermId",
-        "type": "uint64"
-      }
+      { "indexed": false, "name": "previousTermId", "type": "uint64" },
+      { "indexed": false, "name": "currentTermId", "type": "uint64" }
     ],
     "name": "Heartbeat",
     "type": "event"
@@ -918,18 +414,183 @@
   {
     "anonymous": false,
     "inputs": [
+      { "indexed": false, "name": "previousStartTime", "type": "uint64" },
+      { "indexed": false, "name": "currentStartTime", "type": "uint64" }
+    ],
+    "name": "StartTimeDelayed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "name": "disputeId", "type": "uint256" },
+      { "indexed": true, "name": "state", "type": "uint8" }
+    ],
+    "name": "DisputeStateChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "name": "disputeId", "type": "uint256" },
+      { "indexed": true, "name": "submitter", "type": "address" },
+      { "indexed": false, "name": "evidence", "type": "bytes" }
+    ],
+    "name": "EvidenceSubmitted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "name": "disputeId", "type": "uint256" },
+      { "indexed": true, "name": "termId", "type": "uint64" }
+    ],
+    "name": "EvidencePeriodClosed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "name": "disputeId", "type": "uint256" },
+      { "indexed": true, "name": "subject", "type": "address" },
+      { "indexed": true, "name": "draftTermId", "type": "uint64" },
+      { "indexed": false, "name": "jurorsNumber", "type": "uint64" },
+      { "indexed": false, "name": "metadata", "type": "bytes" }
+    ],
+    "name": "NewDispute",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "name": "disputeId", "type": "uint256" },
+      { "indexed": true, "name": "roundId", "type": "uint256" },
+      { "indexed": true, "name": "juror", "type": "address" }
+    ],
+    "name": "JurorDrafted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "name": "disputeId", "type": "uint256" },
+      { "indexed": true, "name": "roundId", "type": "uint256" },
+      { "indexed": false, "name": "ruling", "type": "uint8" }
+    ],
+    "name": "RulingAppealed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "name": "disputeId", "type": "uint256" },
+      { "indexed": true, "name": "roundId", "type": "uint256" },
+      { "indexed": true, "name": "draftTermId", "type": "uint64" },
+      { "indexed": false, "name": "jurorsNumber", "type": "uint256" }
+    ],
+    "name": "RulingAppealConfirmed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "name": "disputeId", "type": "uint256" },
+      { "indexed": true, "name": "ruling", "type": "uint8" }
+    ],
+    "name": "RulingComputed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "name": "disputeId", "type": "uint256" },
+      { "indexed": true, "name": "roundId", "type": "uint256" },
+      { "indexed": false, "name": "collectedTokens", "type": "uint256" }
+    ],
+    "name": "PenaltiesSettled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "name": "disputeId", "type": "uint256" },
+      { "indexed": true, "name": "roundId", "type": "uint256" },
+      { "indexed": false, "name": "juror", "type": "address" },
+      { "indexed": false, "name": "tokens", "type": "uint256" },
+      { "indexed": false, "name": "fees", "type": "uint256" }
+    ],
+    "name": "RewardSettled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "name": "disputeId", "type": "uint256" },
+      { "indexed": true, "name": "roundId", "type": "uint256" }
+    ],
+    "name": "AppealDepositSettled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
       {
         "indexed": false,
-        "name": "previousStartTime",
+        "name": "previousMaxJurorsPerDraftBatch",
         "type": "uint64"
       },
       {
         "indexed": false,
-        "name": "currentStartTime",
+        "name": "currentMaxJurorsPerDraftBatch",
         "type": "uint64"
       }
     ],
-    "name": "StartTimeDelayed",
+    "name": "MaxJurorsPerDraftBatchChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "name": "id", "type": "bytes32" },
+      { "indexed": false, "name": "addr", "type": "address" }
+    ],
+    "name": "ModuleSet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "name": "previousGovernor", "type": "address" },
+      { "indexed": false, "name": "currentGovernor", "type": "address" }
+    ],
+    "name": "FundsGovernorChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "name": "previousGovernor", "type": "address" },
+      { "indexed": false, "name": "currentGovernor", "type": "address" }
+    ],
+    "name": "ConfigGovernorChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "name": "previousFeesUpdater", "type": "address" },
+      { "indexed": false, "name": "currentFeesUpdater", "type": "address" }
+    ],
+    "name": "FeesUpdaterChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "name": "previousGovernor", "type": "address" },
+      { "indexed": false, "name": "currentGovernor", "type": "address" }
+    ],
+    "name": "ModulesGovernorChanged",
     "type": "event"
   }
 ]
