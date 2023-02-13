@@ -1,538 +1,324 @@
 [
   {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_interfaceId",
-        "type": "bytes4"
-      }
-    ],
-    "name": "supportsInterface",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
+    "type": "function",
     "stateMutability": "pure",
-    "type": "function"
+    "payable": false,
+    "outputs": [{ "type": "bool", "name": "" }],
+    "name": "supportsInterface",
+    "inputs": [{ "type": "bytes4", "name": "_interfaceId" }],
+    "constant": true
   },
   {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_addrs",
-        "type": "address[]"
-      },
-      {
-        "name": "_timestamps",
-        "type": "uint256[]"
-      },
-      {
-        "name": "_v",
-        "type": "uint8[]"
-      },
-      {
-        "name": "_r",
-        "type": "bytes32[]"
-      },
-      {
-        "name": "_s",
-        "type": "bytes32[]"
-      },
-      {
-        "name": "_registerAndCall",
-        "type": "address"
-      },
-      {
-        "name": "_functionCallData",
-        "type": "bytes"
-      }
-    ],
-    "name": "register",
-    "outputs": [],
-    "payable": false,
+    "type": "function",
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "hasInitialized",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
     "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "outputs": [],
+    "name": "register",
+    "inputs": [
+      { "type": "address[]", "name": "_addrs" },
+      { "type": "uint256[]", "name": "_timestamps" },
+      { "type": "uint8[]", "name": "_v" },
+      { "type": "bytes32[]", "name": "_r" },
+      { "type": "bytes32[]", "name": "_s" },
+      { "type": "address", "name": "_registerAndCall" },
+      { "type": "bytes", "name": "_functionCallData" }
+    ],
+    "constant": false
   },
   {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "bool", "name": "" }],
+    "name": "hasInitialized",
+    "inputs": [],
+    "constant": true
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [
+      { "type": "address", "name": "uniqueUserId" },
+      { "type": "uint256", "name": "registerTime" },
+      { "type": "bool", "name": "addressVoid" }
     ],
     "name": "userRegistrations",
-    "outputs": [
-      {
-        "name": "uniqueUserId",
-        "type": "address"
-      },
-      {
-        "name": "registerTime",
-        "type": "uint256"
-      },
-      {
-        "name": "addressVoid",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "inputs": [{ "type": "address", "name": "" }],
+    "constant": true
   },
   {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_script",
-        "type": "bytes"
-      }
-    ],
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "uint256", "name": "" }],
+    "name": "requiredVerifications",
+    "inputs": [],
+    "constant": true
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "address", "name": "" }],
     "name": "getEVMScriptExecutor",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "inputs": [{ "type": "bytes", "name": "_script" }],
+    "constant": true
   },
   {
-    "constant": true,
-    "inputs": [],
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "address", "name": "" }],
     "name": "getRecoveryVault",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "inputs": [],
+    "constant": true
   },
   {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_verificationTimestampVariance",
-        "type": "uint256"
-      }
-    ],
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "payable": false,
+    "outputs": [],
     "name": "setVerificationTimestampVariance",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
+    "inputs": [{ "type": "uint256", "name": "_verificationTimestampVariance" }],
+    "constant": false
   },
   {
-    "constant": true,
-    "inputs": [],
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "bytes32", "name": "" }],
     "name": "brightIdContext",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "inputs": [],
+    "constant": true
   },
   {
-    "constant": true,
-    "inputs": [],
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "bytes32", "name": "" }],
     "name": "UPDATE_SETTINGS_ROLE",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "inputs": [],
+    "constant": true
   },
   {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_brightIdUser",
-        "type": "address"
-      }
-    ],
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "bool", "name": "" }],
     "name": "hasUniqueUserId",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "inputs": [{ "type": "address", "name": "_brightIdUser" }],
+    "constant": true
   },
   {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "address", "name": "" }],
     "name": "brightIdVerifiers",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "inputs": [{ "type": "uint256", "name": "" }],
+    "constant": true
   },
   {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_registrationPeriod",
-        "type": "uint256"
-      }
-    ],
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "uint256", "name": "" }],
+    "name": "MAX_BRIGHTID_VERIFIERS",
+    "inputs": [],
+    "constant": true
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "payable": false,
+    "outputs": [],
     "name": "setRegistrationPeriod",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
+    "inputs": [{ "type": "uint256", "name": "_registrationPeriod" }],
+    "constant": false
   },
   {
-    "constant": true,
-    "inputs": [],
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "uint256", "name": "" }],
     "name": "registrationPeriod",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "inputs": [],
+    "constant": true
   },
   {
-    "constant": true,
-    "inputs": [],
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "address[]", "name": "" }],
     "name": "getBrightIdVerifiers",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address[]"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "inputs": [],
+    "constant": true
   },
   {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "token",
-        "type": "address"
-      }
-    ],
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "bool", "name": "" }],
     "name": "allowRecoverability",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "inputs": [{ "type": "address", "name": "token" }],
+    "constant": true
   },
   {
-    "constant": true,
-    "inputs": [],
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "bytes32", "name": "" }],
     "name": "appId",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "inputs": [],
+    "constant": true
   },
   {
-    "constant": true,
-    "inputs": [],
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "uint256", "name": "" }],
     "name": "getInitializationBlock",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "inputs": [],
+    "constant": true
   },
   {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_brightIdContext",
-        "type": "bytes32"
-      },
-      {
-        "name": "_brightIdVerifiers",
-        "type": "address[]"
-      },
-      {
-        "name": "_registrationPeriod",
-        "type": "uint256"
-      },
-      {
-        "name": "_verificationTimestampVariance",
-        "type": "uint256"
-      }
-    ],
-    "name": "initialize",
-    "outputs": [],
-    "payable": false,
+    "type": "function",
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_token",
-        "type": "address"
-      }
-    ],
+    "payable": false,
+    "outputs": [],
     "name": "transferToVault",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
+    "inputs": [{ "type": "address", "name": "_token" }],
+    "constant": false
   },
   {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_sender",
-        "type": "address"
-      },
-      {
-        "name": "_role",
-        "type": "bytes32"
-      },
-      {
-        "name": "_params",
-        "type": "uint256[]"
-      }
-    ],
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "bool", "name": "" }],
     "name": "canPerform",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
+    "inputs": [
+      { "type": "address", "name": "_sender" },
+      { "type": "bytes32", "name": "_role" },
+      { "type": "uint256[]", "name": "_params" }
     ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "constant": true
   },
   {
-    "constant": true,
-    "inputs": [],
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "address", "name": "" }],
     "name": "getEVMScriptRegistry",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
+    "inputs": [],
+    "constant": true
+  },
+  {
+    "type": "function",
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_brightIdVerifiers",
-        "type": "address[]"
-      }
-    ],
-    "name": "setBrightIdVerifiers",
-    "outputs": [],
     "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_brightIdUser",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "type": "bool", "name": "" }],
     "name": "isVerified",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "inputs": [{ "type": "address", "name": "_brightIdUser" }],
+    "constant": true
   },
   {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_brightIdUser",
-        "type": "address"
-      }
-    ],
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "address", "name": "" }],
     "name": "uniqueUserId",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "inputs": [{ "type": "address", "name": "_brightIdUser" }],
+    "constant": true
   },
   {
-    "constant": true,
-    "inputs": [],
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "address", "name": "" }],
     "name": "kernel",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "inputs": [],
+    "constant": true
   },
   {
-    "constant": true,
-    "inputs": [],
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "bool", "name": "" }],
     "name": "isPetrified",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
     "inputs": [],
-    "name": "verificationTimestampVariance",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "constant": true
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
     "payable": false,
+    "outputs": [],
+    "name": "setBrightIdVerifiers",
+    "inputs": [
+      { "type": "address[]", "name": "_brightIdVerifiers" },
+      { "type": "uint256", "name": "_requiredVerifications" }
+    ],
+    "constant": false
+  },
+  {
+    "type": "function",
     "stateMutability": "view",
-    "type": "function"
+    "payable": false,
+    "outputs": [{ "type": "uint256", "name": "" }],
+    "name": "verificationTimestampVariance",
+    "inputs": [],
+    "constant": true
   },
   {
-    "anonymous": false,
+    "type": "function",
+    "stateMutability": "view",
+    "payable": false,
+    "outputs": [{ "type": "uint256", "name": "" }],
+    "name": "MIN_BRIGHTID_VERIFIERS",
+    "inputs": [],
+    "constant": true
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "payable": false,
+    "outputs": [],
+    "name": "initialize",
     "inputs": [
-      {
-        "indexed": false,
-        "name": "sender",
-        "type": "address"
-      }
+      { "type": "bytes32", "name": "_brightIdContext" },
+      { "type": "address[]", "name": "_brightIdVerifiers" },
+      { "type": "uint256", "name": "_requiredVerifications" },
+      { "type": "uint256", "name": "_registrationPeriod" },
+      { "type": "uint256", "name": "_verificationTimestampVariance" }
     ],
+    "constant": false
+  },
+  {
+    "type": "event",
     "name": "Register",
-    "type": "event"
+    "inputs": [{ "type": "address", "name": "sender", "indexed": false }],
+    "anonymous": false
   },
   {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "executor",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "script",
-        "type": "bytes"
-      },
-      {
-        "indexed": false,
-        "name": "input",
-        "type": "bytes"
-      },
-      {
-        "indexed": false,
-        "name": "returnData",
-        "type": "bytes"
-      }
-    ],
+    "type": "event",
     "name": "ScriptResult",
-    "type": "event"
+    "inputs": [
+      { "type": "address", "name": "executor", "indexed": true },
+      { "type": "bytes", "name": "script", "indexed": false },
+      { "type": "bytes", "name": "input", "indexed": false },
+      { "type": "bytes", "name": "returnData", "indexed": false }
+    ],
+    "anonymous": false
   },
   {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "vault",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "name": "token",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
+    "type": "event",
     "name": "RecoverToVault",
-    "type": "event"
+    "inputs": [
+      { "type": "address", "name": "vault", "indexed": true },
+      { "type": "address", "name": "token", "indexed": true },
+      { "type": "uint256", "name": "amount", "indexed": false }
+    ],
+    "anonymous": false
   }
 ]

@@ -196,6 +196,29 @@ export class BrightIdRegister extends ethereum.SmartContract {
     );
   }
 
+  requiredVerifications(): BigInt {
+    let result = super.call(
+      "requiredVerifications",
+      "requiredVerifications():(uint256)",
+      []
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_requiredVerifications(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "requiredVerifications",
+      "requiredVerifications():(uint256)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
   getEVMScriptExecutor(_script: Bytes): Address {
     let result = super.call(
       "getEVMScriptExecutor",
@@ -332,6 +355,29 @@ export class BrightIdRegister extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
+  MAX_BRIGHTID_VERIFIERS(): BigInt {
+    let result = super.call(
+      "MAX_BRIGHTID_VERIFIERS",
+      "MAX_BRIGHTID_VERIFIERS():(uint256)",
+      []
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_MAX_BRIGHTID_VERIFIERS(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "MAX_BRIGHTID_VERIFIERS",
+      "MAX_BRIGHTID_VERIFIERS():(uint256)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   registrationPeriod(): BigInt {
@@ -591,6 +637,29 @@ export class BrightIdRegister extends ethereum.SmartContract {
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
+
+  MIN_BRIGHTID_VERIFIERS(): BigInt {
+    let result = super.call(
+      "MIN_BRIGHTID_VERIFIERS",
+      "MIN_BRIGHTID_VERIFIERS():(uint256)",
+      []
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_MIN_BRIGHTID_VERIFIERS(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "MIN_BRIGHTID_VERIFIERS",
+      "MIN_BRIGHTID_VERIFIERS():(uint256)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
 }
 
 export class RegisterCall extends ethereum.Call {
@@ -707,48 +776,6 @@ export class SetRegistrationPeriodCall__Outputs {
   }
 }
 
-export class InitializeCall extends ethereum.Call {
-  get inputs(): InitializeCall__Inputs {
-    return new InitializeCall__Inputs(this);
-  }
-
-  get outputs(): InitializeCall__Outputs {
-    return new InitializeCall__Outputs(this);
-  }
-}
-
-export class InitializeCall__Inputs {
-  _call: InitializeCall;
-
-  constructor(call: InitializeCall) {
-    this._call = call;
-  }
-
-  get _brightIdContext(): Bytes {
-    return this._call.inputValues[0].value.toBytes();
-  }
-
-  get _brightIdVerifiers(): Array<Address> {
-    return this._call.inputValues[1].value.toAddressArray();
-  }
-
-  get _registrationPeriod(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
-  }
-
-  get _verificationTimestampVariance(): BigInt {
-    return this._call.inputValues[3].value.toBigInt();
-  }
-}
-
-export class InitializeCall__Outputs {
-  _call: InitializeCall;
-
-  constructor(call: InitializeCall) {
-    this._call = call;
-  }
-}
-
 export class TransferToVaultCall extends ethereum.Call {
   get inputs(): TransferToVaultCall__Inputs {
     return new TransferToVaultCall__Inputs(this);
@@ -799,12 +826,62 @@ export class SetBrightIdVerifiersCall__Inputs {
   get _brightIdVerifiers(): Array<Address> {
     return this._call.inputValues[0].value.toAddressArray();
   }
+
+  get _requiredVerifications(): BigInt {
+    return this._call.inputValues[1].value.toBigInt();
+  }
 }
 
 export class SetBrightIdVerifiersCall__Outputs {
   _call: SetBrightIdVerifiersCall;
 
   constructor(call: SetBrightIdVerifiersCall) {
+    this._call = call;
+  }
+}
+
+export class InitializeCall extends ethereum.Call {
+  get inputs(): InitializeCall__Inputs {
+    return new InitializeCall__Inputs(this);
+  }
+
+  get outputs(): InitializeCall__Outputs {
+    return new InitializeCall__Outputs(this);
+  }
+}
+
+export class InitializeCall__Inputs {
+  _call: InitializeCall;
+
+  constructor(call: InitializeCall) {
+    this._call = call;
+  }
+
+  get _brightIdContext(): Bytes {
+    return this._call.inputValues[0].value.toBytes();
+  }
+
+  get _brightIdVerifiers(): Array<Address> {
+    return this._call.inputValues[1].value.toAddressArray();
+  }
+
+  get _requiredVerifications(): BigInt {
+    return this._call.inputValues[2].value.toBigInt();
+  }
+
+  get _registrationPeriod(): BigInt {
+    return this._call.inputValues[3].value.toBigInt();
+  }
+
+  get _verificationTimestampVariance(): BigInt {
+    return this._call.inputValues[4].value.toBigInt();
+  }
+}
+
+export class InitializeCall__Outputs {
+  _call: InitializeCall;
+
+  constructor(call: InitializeCall) {
     this._call = call;
   }
 }

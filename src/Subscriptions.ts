@@ -1,4 +1,4 @@
-import { Address, BigInt, Bytes } from '@graphprotocol/graph-ts';
+import { Address, BigInt, Bytes, log } from '@graphprotocol/graph-ts';
 import { createFeeMovement } from './Treasury';
 import {
   JurorSubscriptionFee,
@@ -83,7 +83,7 @@ function loadOrCreateSubscriptionPeriod(
 
   if (period === null) {
     period = new SubscriptionPeriod(id);
-    period.feeToken = Bytes.fromHexString('0x') as Bytes;
+    period.feeToken = Bytes.fromHexString('0x');
     period.donatedFees = BigInt.fromI32(0);
     period.balanceCheckpoint = BigInt.fromI32(0);
     period.totalActiveBalance = BigInt.fromI32(0);
@@ -118,7 +118,16 @@ function loadOrCreateModule(address: Address): SubscriptionModule {
     subscriptionModule.currentPeriod = BigInt.fromI32(0);
     subscriptionModule.feeToken = subscriptions.currentFeeToken();
     subscriptionModule.periodDuration = subscriptions.periodDuration();
-    subscriptionModule.periodPercentageYield = subscriptions.periodPercentageYield();
+    let periodPercentageYieldPotentialResult = subscriptions.try_periodPercentageYield();
+    if (!periodPercentageYieldPotentialResult.reverted) {
+      subscriptionModule.periodPercentageYield =
+        periodPercentageYieldPotentialResult.value;
+    } else {
+      subscriptionModule.periodPercentageYield = BigInt.fromI32(0);
+      log.warning('Could not get periodPercentageYield from subscription {}', [
+        address.toHexString(),
+      ]);
+    }
   }
 
   return subscriptionModule;

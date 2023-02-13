@@ -10,362 +10,6 @@ import {
   BigInt
 } from "@graphprotocol/graph-ts";
 
-export class Heartbeat extends ethereum.Event {
-  get params(): Heartbeat__Params {
-    return new Heartbeat__Params(this);
-  }
-}
-
-export class Heartbeat__Params {
-  _event: Heartbeat;
-
-  constructor(event: Heartbeat) {
-    this._event = event;
-  }
-
-  get previousTermId(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get currentTermId(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-}
-
-export class StartTimeDelayed extends ethereum.Event {
-  get params(): StartTimeDelayed__Params {
-    return new StartTimeDelayed__Params(this);
-  }
-}
-
-export class StartTimeDelayed__Params {
-  _event: StartTimeDelayed;
-
-  constructor(event: StartTimeDelayed) {
-    this._event = event;
-  }
-
-  get previousStartTime(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get currentStartTime(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-}
-
-export class DisputeStateChanged extends ethereum.Event {
-  get params(): DisputeStateChanged__Params {
-    return new DisputeStateChanged__Params(this);
-  }
-}
-
-export class DisputeStateChanged__Params {
-  _event: DisputeStateChanged;
-
-  constructor(event: DisputeStateChanged) {
-    this._event = event;
-  }
-
-  get disputeId(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get state(): i32 {
-    return this._event.parameters[1].value.toI32();
-  }
-}
-
-export class EvidenceSubmitted extends ethereum.Event {
-  get params(): EvidenceSubmitted__Params {
-    return new EvidenceSubmitted__Params(this);
-  }
-}
-
-export class EvidenceSubmitted__Params {
-  _event: EvidenceSubmitted;
-
-  constructor(event: EvidenceSubmitted) {
-    this._event = event;
-  }
-
-  get disputeId(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get submitter(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get evidence(): Bytes {
-    return this._event.parameters[2].value.toBytes();
-  }
-}
-
-export class EvidencePeriodClosed extends ethereum.Event {
-  get params(): EvidencePeriodClosed__Params {
-    return new EvidencePeriodClosed__Params(this);
-  }
-}
-
-export class EvidencePeriodClosed__Params {
-  _event: EvidencePeriodClosed;
-
-  constructor(event: EvidencePeriodClosed) {
-    this._event = event;
-  }
-
-  get disputeId(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get termId(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-}
-
-export class NewDispute extends ethereum.Event {
-  get params(): NewDispute__Params {
-    return new NewDispute__Params(this);
-  }
-}
-
-export class NewDispute__Params {
-  _event: NewDispute;
-
-  constructor(event: NewDispute) {
-    this._event = event;
-  }
-
-  get disputeId(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get subject(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get draftTermId(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
-
-  get jurorsNumber(): BigInt {
-    return this._event.parameters[3].value.toBigInt();
-  }
-
-  get metadata(): Bytes {
-    return this._event.parameters[4].value.toBytes();
-  }
-}
-
-export class JurorDrafted extends ethereum.Event {
-  get params(): JurorDrafted__Params {
-    return new JurorDrafted__Params(this);
-  }
-}
-
-export class JurorDrafted__Params {
-  _event: JurorDrafted;
-
-  constructor(event: JurorDrafted) {
-    this._event = event;
-  }
-
-  get disputeId(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get roundId(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-
-  get juror(): Address {
-    return this._event.parameters[2].value.toAddress();
-  }
-}
-
-export class RulingAppealed extends ethereum.Event {
-  get params(): RulingAppealed__Params {
-    return new RulingAppealed__Params(this);
-  }
-}
-
-export class RulingAppealed__Params {
-  _event: RulingAppealed;
-
-  constructor(event: RulingAppealed) {
-    this._event = event;
-  }
-
-  get disputeId(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get roundId(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-
-  get ruling(): i32 {
-    return this._event.parameters[2].value.toI32();
-  }
-}
-
-export class RulingAppealConfirmed extends ethereum.Event {
-  get params(): RulingAppealConfirmed__Params {
-    return new RulingAppealConfirmed__Params(this);
-  }
-}
-
-export class RulingAppealConfirmed__Params {
-  _event: RulingAppealConfirmed;
-
-  constructor(event: RulingAppealConfirmed) {
-    this._event = event;
-  }
-
-  get disputeId(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get roundId(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-
-  get draftTermId(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
-
-  get jurorsNumber(): BigInt {
-    return this._event.parameters[3].value.toBigInt();
-  }
-}
-
-export class RulingComputed extends ethereum.Event {
-  get params(): RulingComputed__Params {
-    return new RulingComputed__Params(this);
-  }
-}
-
-export class RulingComputed__Params {
-  _event: RulingComputed;
-
-  constructor(event: RulingComputed) {
-    this._event = event;
-  }
-
-  get disputeId(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get ruling(): i32 {
-    return this._event.parameters[1].value.toI32();
-  }
-}
-
-export class PenaltiesSettled extends ethereum.Event {
-  get params(): PenaltiesSettled__Params {
-    return new PenaltiesSettled__Params(this);
-  }
-}
-
-export class PenaltiesSettled__Params {
-  _event: PenaltiesSettled;
-
-  constructor(event: PenaltiesSettled) {
-    this._event = event;
-  }
-
-  get disputeId(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get roundId(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-
-  get collectedTokens(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
-}
-
-export class RewardSettled extends ethereum.Event {
-  get params(): RewardSettled__Params {
-    return new RewardSettled__Params(this);
-  }
-}
-
-export class RewardSettled__Params {
-  _event: RewardSettled;
-
-  constructor(event: RewardSettled) {
-    this._event = event;
-  }
-
-  get disputeId(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get roundId(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-
-  get juror(): Address {
-    return this._event.parameters[2].value.toAddress();
-  }
-
-  get tokens(): BigInt {
-    return this._event.parameters[3].value.toBigInt();
-  }
-
-  get fees(): BigInt {
-    return this._event.parameters[4].value.toBigInt();
-  }
-}
-
-export class AppealDepositSettled extends ethereum.Event {
-  get params(): AppealDepositSettled__Params {
-    return new AppealDepositSettled__Params(this);
-  }
-}
-
-export class AppealDepositSettled__Params {
-  _event: AppealDepositSettled;
-
-  constructor(event: AppealDepositSettled) {
-    this._event = event;
-  }
-
-  get disputeId(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get roundId(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-}
-
-export class MaxJurorsPerDraftBatchChanged extends ethereum.Event {
-  get params(): MaxJurorsPerDraftBatchChanged__Params {
-    return new MaxJurorsPerDraftBatchChanged__Params(this);
-  }
-}
-
-export class MaxJurorsPerDraftBatchChanged__Params {
-  _event: MaxJurorsPerDraftBatchChanged;
-
-  constructor(event: MaxJurorsPerDraftBatchChanged) {
-    this._event = event;
-  }
-
-  get previousMaxJurorsPerDraftBatch(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get currentMaxJurorsPerDraftBatch(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-}
-
 export class ModuleSet extends ethereum.Event {
   get params(): ModuleSet__Params {
     return new ModuleSet__Params(this);
@@ -476,31 +120,126 @@ export class ModulesGovernorChanged__Params {
   }
 }
 
-export class AragonCourt__disputesResult {
-  value0: Address;
-  value1: i32;
+export class NewConfig extends ethereum.Event {
+  get params(): NewConfig__Params {
+    return new NewConfig__Params(this);
+  }
+}
 
-  constructor(value0: Address, value1: i32) {
+export class NewConfig__Params {
+  _event: NewConfig;
+
+  constructor(event: NewConfig) {
+    this._event = event;
+  }
+
+  get fromTermId(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get courtConfigId(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
+  }
+}
+
+export class AutomaticWithdrawalsAllowedChanged extends ethereum.Event {
+  get params(): AutomaticWithdrawalsAllowedChanged__Params {
+    return new AutomaticWithdrawalsAllowedChanged__Params(this);
+  }
+}
+
+export class AutomaticWithdrawalsAllowedChanged__Params {
+  _event: AutomaticWithdrawalsAllowedChanged;
+
+  constructor(event: AutomaticWithdrawalsAllowedChanged) {
+    this._event = event;
+  }
+
+  get holder(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get allowed(): boolean {
+    return this._event.parameters[1].value.toBoolean();
+  }
+}
+
+export class Heartbeat extends ethereum.Event {
+  get params(): Heartbeat__Params {
+    return new Heartbeat__Params(this);
+  }
+}
+
+export class Heartbeat__Params {
+  _event: Heartbeat;
+
+  constructor(event: Heartbeat) {
+    this._event = event;
+  }
+
+  get previousTermId(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get currentTermId(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
+  }
+}
+
+export class StartTimeDelayed extends ethereum.Event {
+  get params(): StartTimeDelayed__Params {
+    return new StartTimeDelayed__Params(this);
+  }
+}
+
+export class StartTimeDelayed__Params {
+  _event: StartTimeDelayed;
+
+  constructor(event: StartTimeDelayed) {
+    this._event = event;
+  }
+
+  get previousStartTime(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get currentStartTime(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
+  }
+}
+
+export class AragonCourt__getDraftConfigResult {
+  value0: Address;
+  value1: BigInt;
+  value2: i32;
+
+  constructor(value0: Address, value1: BigInt, value2: i32) {
     this.value0 = value0;
     this.value1 = value1;
+    this.value2 = value2;
   }
 
   toMap(): TypedMap<string, ethereum.Value> {
     let map = new TypedMap<string, ethereum.Value>();
     map.set("value0", ethereum.Value.fromAddress(this.value0));
+    map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
     map.set(
-      "value1",
-      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value1))
+      "value2",
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value2))
     );
     return map;
   }
 
-  getSubject(): Address {
+  getFeeToken(): Address {
     return this.value0;
   }
 
-  getState(): i32 {
+  getDraftFee(): BigInt {
     return this.value1;
+  }
+
+  getPenaltyPct(): i32 {
+    return this.value2;
   }
 }
 
@@ -523,44 +262,16 @@ export class AragonCourt__getDisputeFeesResult {
     return map;
   }
 
-  getValue0(): Address {
+  getRecipient(): Address {
     return this.value0;
   }
 
-  getValue1(): Address {
+  getFeeToken(): Address {
     return this.value1;
   }
 
-  getValue2(): BigInt {
+  getFeeAmount(): BigInt {
     return this.value2;
-  }
-}
-
-export class AragonCourt__computeRulingResult {
-  value0: Address;
-  value1: i32;
-
-  constructor(value0: Address, value1: i32) {
-    this.value0 = value0;
-    this.value1 = value1;
-  }
-
-  toMap(): TypedMap<string, ethereum.Value> {
-    let map = new TypedMap<string, ethereum.Value>();
-    map.set("value0", ethereum.Value.fromAddress(this.value0));
-    map.set(
-      "value1",
-      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value1))
-    );
-    return map;
-  }
-
-  getSubject(): Address {
-    return this.value0;
-  }
-
-  getFinalRuling(): i32 {
-    return this.value1;
   }
 }
 
@@ -631,7 +342,7 @@ export class AragonCourt__getConfigResult {
     return map;
   }
 
-  get_feeToken(): Address {
+  getFeeToken(): Address {
     return this.value0;
   }
 
@@ -765,6 +476,29 @@ export class AragonCourt extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
+  areWithdrawalsAllowedFor(_holder: Address): boolean {
+    let result = super.call(
+      "areWithdrawalsAllowedFor",
+      "areWithdrawalsAllowedFor(address):(bool)",
+      [ethereum.Value.fromAddress(_holder)]
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_areWithdrawalsAllowedFor(_holder: Address): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "areWithdrawalsAllowedFor",
+      "areWithdrawalsAllowedFor(address):(bool)",
+      [ethereum.Value.fromAddress(_holder)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
   getTreasury(): Address {
     let result = super.call("getTreasury", "getTreasury():(address)", []);
 
@@ -826,6 +560,29 @@ export class AragonCourt extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
+  ensureCurrentTerm(): BigInt {
+    let result = super.call(
+      "ensureCurrentTerm",
+      "ensureCurrentTerm():(uint64)",
+      []
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_ensureCurrentTerm(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "ensureCurrentTerm",
+      "ensureCurrentTerm():(uint64)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
   getModulesGovernor(): Address {
     let result = super.call(
       "getModulesGovernor",
@@ -849,57 +606,103 @@ export class AragonCourt extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  disputes(param0: BigInt): AragonCourt__disputesResult {
-    let result = super.call("disputes", "disputes(uint256):(address,uint8)", [
-      ethereum.Value.fromUnsignedBigInt(param0)
-    ]);
+  getNeededTermTransitions(): BigInt {
+    let result = super.call(
+      "getNeededTermTransitions",
+      "getNeededTermTransitions():(uint64)",
+      []
+    );
 
-    return new AragonCourt__disputesResult(
+    return result[0].toBigInt();
+  }
+
+  try_getNeededTermTransitions(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "getNeededTermTransitions",
+      "getNeededTermTransitions():(uint64)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  getTermRandomness(_termId: BigInt): Bytes {
+    let result = super.call(
+      "getTermRandomness",
+      "getTermRandomness(uint64):(bytes32)",
+      [ethereum.Value.fromUnsignedBigInt(_termId)]
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_getTermRandomness(_termId: BigInt): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "getTermRandomness",
+      "getTermRandomness(uint64):(bytes32)",
+      [ethereum.Value.fromUnsignedBigInt(_termId)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  getDraftConfig(_termId: BigInt): AragonCourt__getDraftConfigResult {
+    let result = super.call(
+      "getDraftConfig",
+      "getDraftConfig(uint64):(address,uint256,uint16)",
+      [ethereum.Value.fromUnsignedBigInt(_termId)]
+    );
+
+    return new AragonCourt__getDraftConfigResult(
       result[0].toAddress(),
-      result[1].toI32()
+      result[1].toBigInt(),
+      result[2].toI32()
     );
   }
 
-  try_disputes(
-    param0: BigInt
-  ): ethereum.CallResult<AragonCourt__disputesResult> {
+  try_getDraftConfig(
+    _termId: BigInt
+  ): ethereum.CallResult<AragonCourt__getDraftConfigResult> {
     let result = super.tryCall(
-      "disputes",
-      "disputes(uint256):(address,uint8)",
-      [ethereum.Value.fromUnsignedBigInt(param0)]
+      "getDraftConfig",
+      "getDraftConfig(uint64):(address,uint256,uint16)",
+      [ethereum.Value.fromUnsignedBigInt(_termId)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new AragonCourt__disputesResult(value[0].toAddress(), value[1].toI32())
+      new AragonCourt__getDraftConfigResult(
+        value[0].toAddress(),
+        value[1].toBigInt(),
+        value[2].toI32()
+      )
     );
   }
 
-  feeToken(): Address {
-    let result = super.call("feeToken", "feeToken():(address)", []);
-
-    return result[0].toAddress();
-  }
-
-  try_feeToken(): ethereum.CallResult<Address> {
-    let result = super.tryCall("feeToken", "feeToken():(address)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  feeAmount(): BigInt {
-    let result = super.call("feeAmount", "feeAmount():(uint256)", []);
+  getConfigChangeTermId(): BigInt {
+    let result = super.call(
+      "getConfigChangeTermId",
+      "getConfigChangeTermId():(uint64)",
+      []
+    );
 
     return result[0].toBigInt();
   }
 
-  try_feeAmount(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("feeAmount", "feeAmount():(uint256)", []);
+  try_getConfigChangeTermId(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "getConfigChangeTermId",
+      "getConfigChangeTermId():(uint64)",
+      []
+    );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
@@ -963,6 +766,52 @@ export class AragonCourt extends ethereum.SmartContract {
     );
   }
 
+  ensureCurrentTermRandomness(): Bytes {
+    let result = super.call(
+      "ensureCurrentTermRandomness",
+      "ensureCurrentTermRandomness():(bytes32)",
+      []
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_ensureCurrentTermRandomness(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "ensureCurrentTermRandomness",
+      "ensureCurrentTermRandomness():(bytes32)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  getTermTokenTotalSupply(_termId: BigInt): BigInt {
+    let result = super.call(
+      "getTermTokenTotalSupply",
+      "getTermTokenTotalSupply(uint64):(uint256)",
+      [ethereum.Value.fromUnsignedBigInt(_termId)]
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_getTermTokenTotalSupply(_termId: BigInt): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "getTermTokenTotalSupply",
+      "getTermTokenTotalSupply(uint64):(uint256)",
+      [ethereum.Value.fromUnsignedBigInt(_termId)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
   getModule(_id: Bytes): Address {
     let result = super.call("getModule", "getModule(bytes32):(address)", [
       ethereum.Value.fromFixedBytes(_id)
@@ -975,21 +824,6 @@ export class AragonCourt extends ethereum.SmartContract {
     let result = super.tryCall("getModule", "getModule(bytes32):(address)", [
       ethereum.Value.fromFixedBytes(_id)
     ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  owner(): Address {
-    let result = super.call("owner", "owner():(address)", []);
-
-    return result[0].toAddress();
-  }
-
-  try_owner(): ethereum.CallResult<Address> {
-    let result = super.tryCall("owner", "owner():(address)", []);
     if (result.reverted) {
       return new ethereum.CallResult();
     }
@@ -1018,6 +852,29 @@ export class AragonCourt extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
+  getMinActiveBalance(_termId: BigInt): BigInt {
+    let result = super.call(
+      "getMinActiveBalance",
+      "getMinActiveBalance(uint64):(uint256)",
+      [ethereum.Value.fromUnsignedBigInt(_termId)]
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_getMinActiveBalance(_termId: BigInt): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "getMinActiveBalance",
+      "getMinActiveBalance(uint64):(uint256)",
+      [ethereum.Value.fromUnsignedBigInt(_termId)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   getConfigGovernor(): Address {
@@ -1079,39 +936,6 @@ export class AragonCourt extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  computeRuling(_disputeId: BigInt): AragonCourt__computeRulingResult {
-    let result = super.call(
-      "computeRuling",
-      "computeRuling(uint256):(address,uint8)",
-      [ethereum.Value.fromUnsignedBigInt(_disputeId)]
-    );
-
-    return new AragonCourt__computeRulingResult(
-      result[0].toAddress(),
-      result[1].toI32()
-    );
-  }
-
-  try_computeRuling(
-    _disputeId: BigInt
-  ): ethereum.CallResult<AragonCourt__computeRulingResult> {
-    let result = super.tryCall(
-      "computeRuling",
-      "computeRuling(uint256):(address,uint8)",
-      [ethereum.Value.fromUnsignedBigInt(_disputeId)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(
-      new AragonCourt__computeRulingResult(
-        value[0].toAddress(),
-        value[1].toI32()
-      )
-    );
   }
 
   createDispute(_possibleRulings: BigInt, _metadata: Bytes): BigInt {
@@ -1196,7 +1020,7 @@ export class AragonCourt extends ethereum.SmartContract {
   getConfig(_termId: BigInt): AragonCourt__getConfigResult {
     let result = super.call(
       "getConfig",
-      "getConfig(uint64):(address,uint256[3],uint8,uint64[9],uint16[2],uint256[2],uint256[4])",
+      "getConfig(uint64):(address,uint256[3],uint8,uint64[9],uint16[2],uint256[2],uint256[3])",
       [ethereum.Value.fromUnsignedBigInt(_termId)]
     );
 
@@ -1216,7 +1040,7 @@ export class AragonCourt extends ethereum.SmartContract {
   ): ethereum.CallResult<AragonCourt__getConfigResult> {
     let result = super.tryCall(
       "getConfig",
-      "getConfig(uint64):(address,uint256[3],uint8,uint64[9],uint16[2],uint256[2],uint256[4])",
+      "getConfig(uint64):(address,uint256[3],uint8,uint64[9],uint16[2],uint256[2],uint256[3])",
       [ethereum.Value.fromUnsignedBigInt(_termId)]
     );
     if (result.reverted) {
@@ -1234,21 +1058,6 @@ export class AragonCourt extends ethereum.SmartContract {
         value[6].toBigIntArray()
       )
     );
-  }
-
-  currentId(): BigInt {
-    let result = super.call("currentId", "currentId():(uint256)", []);
-
-    return result[0].toBigInt();
-  }
-
-  try_currentId(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("currentId", "currentId():(uint256)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   getTerm(_termId: BigInt): AragonCourt__getTermResult {
@@ -1287,69 +1096,92 @@ export class AragonCourt extends ethereum.SmartContract {
       )
     );
   }
-}
 
-export class SetOwnerCall extends ethereum.Call {
-  get inputs(): SetOwnerCall__Inputs {
-    return new SetOwnerCall__Inputs(this);
+  getLastEnsuredTermId(): BigInt {
+    let result = super.call(
+      "getLastEnsuredTermId",
+      "getLastEnsuredTermId():(uint64)",
+      []
+    );
+
+    return result[0].toBigInt();
   }
 
-  get outputs(): SetOwnerCall__Outputs {
-    return new SetOwnerCall__Outputs(this);
+  try_getLastEnsuredTermId(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "getLastEnsuredTermId",
+      "getLastEnsuredTermId():(uint64)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 }
 
-export class SetOwnerCall__Inputs {
-  _call: SetOwnerCall;
+export class SetModulesCall extends ethereum.Call {
+  get inputs(): SetModulesCall__Inputs {
+    return new SetModulesCall__Inputs(this);
+  }
 
-  constructor(call: SetOwnerCall) {
+  get outputs(): SetModulesCall__Outputs {
+    return new SetModulesCall__Outputs(this);
+  }
+}
+
+export class SetModulesCall__Inputs {
+  _call: SetModulesCall;
+
+  constructor(call: SetModulesCall) {
     this._call = call;
   }
 
-  get _owner(): Address {
-    return this._call.inputValues[0].value.toAddress();
+  get _ids(): Array<Bytes> {
+    return this._call.inputValues[0].value.toBytesArray();
+  }
+
+  get _addresses(): Array<Address> {
+    return this._call.inputValues[1].value.toAddressArray();
   }
 }
 
-export class SetOwnerCall__Outputs {
-  _call: SetOwnerCall;
+export class SetModulesCall__Outputs {
+  _call: SetModulesCall;
 
-  constructor(call: SetOwnerCall) {
+  constructor(call: SetModulesCall) {
     this._call = call;
   }
 }
 
-export class DecideDisputeCall extends ethereum.Call {
-  get inputs(): DecideDisputeCall__Inputs {
-    return new DecideDisputeCall__Inputs(this);
+export class EnsureCurrentTermCall extends ethereum.Call {
+  get inputs(): EnsureCurrentTermCall__Inputs {
+    return new EnsureCurrentTermCall__Inputs(this);
   }
 
-  get outputs(): DecideDisputeCall__Outputs {
-    return new DecideDisputeCall__Outputs(this);
-  }
-}
-
-export class DecideDisputeCall__Inputs {
-  _call: DecideDisputeCall;
-
-  constructor(call: DecideDisputeCall) {
-    this._call = call;
-  }
-
-  get _disputeId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-
-  get _state(): i32 {
-    return this._call.inputValues[1].value.toI32();
+  get outputs(): EnsureCurrentTermCall__Outputs {
+    return new EnsureCurrentTermCall__Outputs(this);
   }
 }
 
-export class DecideDisputeCall__Outputs {
-  _call: DecideDisputeCall;
+export class EnsureCurrentTermCall__Inputs {
+  _call: EnsureCurrentTermCall;
 
-  constructor(call: DecideDisputeCall) {
+  constructor(call: EnsureCurrentTermCall) {
     this._call = call;
+  }
+}
+
+export class EnsureCurrentTermCall__Outputs {
+  _call: EnsureCurrentTermCall;
+
+  constructor(call: EnsureCurrentTermCall) {
+    this._call = call;
+  }
+
+  get value0(): BigInt {
+    return this._call.outputValues[0].value.toBigInt();
   }
 }
 
@@ -1434,20 +1266,16 @@ export class SubmitEvidenceCall__Inputs {
     this._call = call;
   }
 
-  get _subject(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-
   get _disputeId(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
+    return this._call.inputValues[0].value.toBigInt();
   }
 
   get _submitter(): Address {
-    return this._call.inputValues[2].value.toAddress();
+    return this._call.inputValues[1].value.toAddress();
   }
 
   get _evidence(): Bytes {
-    return this._call.inputValues[3].value.toBytes();
+    return this._call.inputValues[2].value.toBytes();
   }
 }
 
@@ -1459,20 +1287,50 @@ export class SubmitEvidenceCall__Outputs {
   }
 }
 
-export class DraftCall extends ethereum.Call {
-  get inputs(): DraftCall__Inputs {
-    return new DraftCall__Inputs(this);
+export class EnsureCurrentTermRandomnessCall extends ethereum.Call {
+  get inputs(): EnsureCurrentTermRandomnessCall__Inputs {
+    return new EnsureCurrentTermRandomnessCall__Inputs(this);
   }
 
-  get outputs(): DraftCall__Outputs {
-    return new DraftCall__Outputs(this);
+  get outputs(): EnsureCurrentTermRandomnessCall__Outputs {
+    return new EnsureCurrentTermRandomnessCall__Outputs(this);
   }
 }
 
-export class DraftCall__Inputs {
-  _call: DraftCall;
+export class EnsureCurrentTermRandomnessCall__Inputs {
+  _call: EnsureCurrentTermRandomnessCall;
 
-  constructor(call: DraftCall) {
+  constructor(call: EnsureCurrentTermRandomnessCall) {
+    this._call = call;
+  }
+}
+
+export class EnsureCurrentTermRandomnessCall__Outputs {
+  _call: EnsureCurrentTermRandomnessCall;
+
+  constructor(call: EnsureCurrentTermRandomnessCall) {
+    this._call = call;
+  }
+
+  get value0(): Bytes {
+    return this._call.outputValues[0].value.toBytes();
+  }
+}
+
+export class CloseEvidencePeriodCall extends ethereum.Call {
+  get inputs(): CloseEvidencePeriodCall__Inputs {
+    return new CloseEvidencePeriodCall__Inputs(this);
+  }
+
+  get outputs(): CloseEvidencePeriodCall__Outputs {
+    return new CloseEvidencePeriodCall__Outputs(this);
+  }
+}
+
+export class CloseEvidencePeriodCall__Inputs {
+  _call: CloseEvidencePeriodCall;
+
+  constructor(call: CloseEvidencePeriodCall) {
     this._call = call;
   }
 
@@ -1481,10 +1339,40 @@ export class DraftCall__Inputs {
   }
 }
 
-export class DraftCall__Outputs {
-  _call: DraftCall;
+export class CloseEvidencePeriodCall__Outputs {
+  _call: CloseEvidencePeriodCall;
 
-  constructor(call: DraftCall) {
+  constructor(call: CloseEvidencePeriodCall) {
+    this._call = call;
+  }
+}
+
+export class SetAutomaticWithdrawalsCall extends ethereum.Call {
+  get inputs(): SetAutomaticWithdrawalsCall__Inputs {
+    return new SetAutomaticWithdrawalsCall__Inputs(this);
+  }
+
+  get outputs(): SetAutomaticWithdrawalsCall__Outputs {
+    return new SetAutomaticWithdrawalsCall__Outputs(this);
+  }
+}
+
+export class SetAutomaticWithdrawalsCall__Inputs {
+  _call: SetAutomaticWithdrawalsCall;
+
+  constructor(call: SetAutomaticWithdrawalsCall) {
+    this._call = call;
+  }
+
+  get _allowed(): boolean {
+    return this._call.inputValues[0].value.toBoolean();
+  }
+}
+
+export class SetAutomaticWithdrawalsCall__Outputs {
+  _call: SetAutomaticWithdrawalsCall;
+
+  constructor(call: SetAutomaticWithdrawalsCall) {
     this._call = call;
   }
 }
@@ -1579,71 +1467,61 @@ export class HeartbeatCall__Outputs {
   }
 }
 
-export class SetTermDurationCall extends ethereum.Call {
-  get inputs(): SetTermDurationCall__Inputs {
-    return new SetTermDurationCall__Inputs(this);
+export class SetConfigCall extends ethereum.Call {
+  get inputs(): SetConfigCall__Inputs {
+    return new SetConfigCall__Inputs(this);
   }
 
-  get outputs(): SetTermDurationCall__Outputs {
-    return new SetTermDurationCall__Outputs(this);
+  get outputs(): SetConfigCall__Outputs {
+    return new SetConfigCall__Outputs(this);
   }
 }
 
-export class SetTermDurationCall__Inputs {
-  _call: SetTermDurationCall;
+export class SetConfigCall__Inputs {
+  _call: SetConfigCall;
 
-  constructor(call: SetTermDurationCall) {
+  constructor(call: SetConfigCall) {
     this._call = call;
   }
 
-  get _termDuration(): BigInt {
+  get _fromTermId(): BigInt {
     return this._call.inputValues[0].value.toBigInt();
   }
+
+  get _feeToken(): Address {
+    return this._call.inputValues[1].value.toAddress();
+  }
+
+  get _fees(): Array<BigInt> {
+    return this._call.inputValues[2].value.toBigIntArray();
+  }
+
+  get _maxRulingOptions(): i32 {
+    return this._call.inputValues[3].value.toI32();
+  }
+
+  get _roundParams(): Array<BigInt> {
+    return this._call.inputValues[4].value.toBigIntArray();
+  }
+
+  get _pcts(): Array<i32> {
+    return this._call.inputValues[5].value.toI32Array();
+  }
+
+  get _appealCollateralParams(): Array<BigInt> {
+    return this._call.inputValues[6].value.toBigIntArray();
+  }
+
+  get _jurorsParams(): Array<BigInt> {
+    return this._call.inputValues[7].value.toBigIntArray();
+  }
 }
 
-export class SetTermDurationCall__Outputs {
-  _call: SetTermDurationCall;
+export class SetConfigCall__Outputs {
+  _call: SetConfigCall;
 
-  constructor(call: SetTermDurationCall) {
+  constructor(call: SetConfigCall) {
     this._call = call;
-  }
-}
-
-export class ComputeRulingCall extends ethereum.Call {
-  get inputs(): ComputeRulingCall__Inputs {
-    return new ComputeRulingCall__Inputs(this);
-  }
-
-  get outputs(): ComputeRulingCall__Outputs {
-    return new ComputeRulingCall__Outputs(this);
-  }
-}
-
-export class ComputeRulingCall__Inputs {
-  _call: ComputeRulingCall;
-
-  constructor(call: ComputeRulingCall) {
-    this._call = call;
-  }
-
-  get _disputeId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-}
-
-export class ComputeRulingCall__Outputs {
-  _call: ComputeRulingCall;
-
-  constructor(call: ComputeRulingCall) {
-    this._call = call;
-  }
-
-  get subject(): Address {
-    return this._call.outputValues[0].value.toAddress();
-  }
-
-  get finalRuling(): i32 {
-    return this._call.outputValues[1].value.toI32();
   }
 }
 
@@ -1682,40 +1560,6 @@ export class CreateDisputeCall__Outputs {
 
   get value0(): BigInt {
     return this._call.outputValues[0].value.toBigInt();
-  }
-}
-
-export class CloseEvidencePeriodCall extends ethereum.Call {
-  get inputs(): CloseEvidencePeriodCall__Inputs {
-    return new CloseEvidencePeriodCall__Inputs(this);
-  }
-
-  get outputs(): CloseEvidencePeriodCall__Outputs {
-    return new CloseEvidencePeriodCall__Outputs(this);
-  }
-}
-
-export class CloseEvidencePeriodCall__Inputs {
-  _call: CloseEvidencePeriodCall;
-
-  constructor(call: CloseEvidencePeriodCall) {
-    this._call = call;
-  }
-
-  get _subject(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-
-  get _disputeId(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-}
-
-export class CloseEvidencePeriodCall__Outputs {
-  _call: CloseEvidencePeriodCall;
-
-  constructor(call: CloseEvidencePeriodCall) {
-    this._call = call;
   }
 }
 
@@ -1890,12 +1734,40 @@ export class ConstructorCall__Inputs {
     this._call = call;
   }
 
-  get _feeToken(): Address {
-    return this._call.inputValues[0].value.toAddress();
+  get _termParams(): Array<BigInt> {
+    return this._call.inputValues[0].value.toBigIntArray();
   }
 
-  get _feeAmount(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
+  get _governors(): Array<Address> {
+    return this._call.inputValues[1].value.toAddressArray();
+  }
+
+  get _feeToken(): Address {
+    return this._call.inputValues[2].value.toAddress();
+  }
+
+  get _fees(): Array<BigInt> {
+    return this._call.inputValues[3].value.toBigIntArray();
+  }
+
+  get _maxRulingOptions(): i32 {
+    return this._call.inputValues[4].value.toI32();
+  }
+
+  get _roundParams(): Array<BigInt> {
+    return this._call.inputValues[5].value.toBigIntArray();
+  }
+
+  get _pcts(): Array<i32> {
+    return this._call.inputValues[6].value.toI32Array();
+  }
+
+  get _appealCollateralParams(): Array<BigInt> {
+    return this._call.inputValues[7].value.toBigIntArray();
+  }
+
+  get _jurorsParams(): Array<BigInt> {
+    return this._call.inputValues[8].value.toBigIntArray();
   }
 }
 

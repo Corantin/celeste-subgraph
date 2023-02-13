@@ -17,15 +17,18 @@ export function tryDecodingAgreementMetadata(dispute: Dispute): void {
   let rawMetadata = dispute.rawMetadata;
   if (rawMetadata.length != AGREEMENT_DISPUTE_METADATA_LENGTH) return;
 
-  let header = rawMetadata.subarray(0, AGREEMENT_APP_ID_LENGTH / 2) as Bytes;
+  let header = Bytes.fromUint8Array(
+    rawMetadata.subarray(0, AGREEMENT_APP_ID_LENGTH / 2)
+  );
   let actualAppId = header.toHexString().slice(2);
   if (actualAppId != AGREEMENT_OPEN_APP_ID) return;
 
-  let rawChallengeId = rawMetadata.subarray(
-    AGREEMENT_APP_ID_LENGTH / 2,
-    rawMetadata.length
-  ) as Bytes;
-  let challengeId = BigInt.fromSignedBytes(rawChallengeId.reverse() as Bytes);
+  let rawChallengeId = Bytes.fromUint8Array(
+    rawMetadata.subarray(AGREEMENT_APP_ID_LENGTH / 2, rawMetadata.length)
+  );
+  let challengeId = BigInt.fromSignedBytes(
+    Bytes.fromUint8Array(rawChallengeId.reverse())
+  );
   let agreement = Agreement.bind(Address.fromString(dispute.subject));
   let challengeData = agreement.try_getChallenge(challengeId);
   if (
