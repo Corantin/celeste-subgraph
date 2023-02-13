@@ -57,7 +57,7 @@ templates:
       abi: DisputeManager
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Arbitrable
@@ -109,7 +109,7 @@ templates:
       abi: JurorsRegistry
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Juror
@@ -154,7 +154,7 @@ templates:
       abi: Voting
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - JurorDraft
@@ -181,7 +181,7 @@ templates:
       abi: Treasury
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - FeeMovement
@@ -202,7 +202,7 @@ templates:
       abi: Subscriptions
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - FeeMovement
@@ -227,7 +227,7 @@ templates:
       abi: BrightIdRegister
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Juror
