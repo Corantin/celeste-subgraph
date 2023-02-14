@@ -1,14 +1,15 @@
-import { concat } from '../helpers/bytes';
-import { buildId } from '../helpers/id';
-import { createFeeMovement } from './Treasury';
-import { tryDecodingAgreementMetadata } from '../helpers/disputable';
+import { concat } from "../helpers/bytes";
+import { buildId } from "../helpers/id";
+import { createFeeMovement } from "./Treasury";
+import { tryDecodingAgreementMetadata } from "../helpers/disputable";
 import {
   crypto,
   Bytes,
   BigInt,
   Address,
   ethereum,
-} from '@graphprotocol/graph-ts';
+  log,
+} from "@graphprotocol/graph-ts";
 import {
   AdjudicationRound,
   Arbitrable,
@@ -17,7 +18,7 @@ import {
   Appeal,
   JurorDispute,
   JurorDraft,
-} from '../generated/schema';
+} from "../generated/schema";
 import {
   DisputeManager,
   NewDispute,
@@ -31,10 +32,10 @@ import {
   RulingAppealed,
   RulingAppealConfirmed,
   RulingComputed,
-} from '../generated/templates/DisputeManager/DisputeManager';
+} from "../generated/templates/DisputeManager/DisputeManager";
 
-const JUROR_FEES = 'Juror';
-const APPEAL_FEES = 'Appeal';
+const JUROR_FEES = "Juror";
+const APPEAL_FEES = "Appeal";
 
 export function handleNewDispute(event: NewDispute): void {
   let manager = DisputeManager.bind(event.address);
@@ -44,7 +45,7 @@ export function handleNewDispute(event: NewDispute): void {
   dispute.metadata = event.params.metadata.toString();
   dispute.rawMetadata = event.params.metadata;
   dispute.possibleRulings = disputeResult.value1;
-  dispute.state = 'Evidence';
+  dispute.state = "Evidence";
   dispute.settledPenalties = false;
   dispute.finalRuling = disputeResult.value3;
   dispute.lastRoundId = disputeResult.value4;
@@ -73,7 +74,7 @@ export function handleEvidenceSubmitted(event: EvidenceSubmitted): void {
 
 export function handleEvidencePeriodClosed(event: EvidencePeriodClosed): void {
   let dispute = Dispute.load(event.params.disputeId.toString())!;
-  dispute.state = 'Drafting';
+  dispute.state = "Drafting";
   dispute.save();
 
   updateRound(event.params.disputeId, dispute.lastRoundId, event);
@@ -188,7 +189,7 @@ export function handleAppealDepositSettled(event: AppealDepositSettled): void {
 
 export function handleRulingComputed(event: RulingComputed): void {
   let dispute = Dispute.load(event.params.disputeId.toString())!;
-  dispute.state = 'Ruled';
+  dispute.state = "Ruled";
   dispute.finalRuling = event.params.ruling;
   dispute.ruledAt = event.block.timestamp;
   dispute.save();
@@ -303,14 +304,14 @@ function createAppealFeesForDeposits(
       maker,
       appeal.appealDeposit.minus(feesRefund),
       event,
-      id.concat('-maker')
+      id.concat("-maker")
     );
     createFeeMovement(
       APPEAL_FEES,
       taker,
       appeal.confirmAppealDeposit.minus(feesRefund),
       event,
-      id.concat('-taker')
+      id.concat("-taker")
     );
   }
 }
@@ -347,14 +348,14 @@ function createAppealFeesForJurorFees(
         Address.fromString(appeal.maker.toHexString()),
         refundFees,
         event,
-        id.concat('-maker')
+        id.concat("-maker")
       );
       createFeeMovement(
         APPEAL_FEES,
         Address.fromString(appeal.taker.toHexString()),
         refundFees,
         event,
-        id.concat('-taker')
+        id.concat("-taker")
       );
     }
   }
@@ -416,14 +417,14 @@ export function decodeDisputeRoundId(disputeRoundId: BigInt): BigInt[] {
 export function buildDraftId(roundId: BigInt, juror: Address): string {
   // @ts-ignore BigInt is actually a BytesArray under the hood
   return crypto
-    .keccak256(concat(new Bytes(roundId.toI32()), juror))
+    .keccak256(Bytes.fromBigInt(roundId).concat(juror))
     .toHexString();
 }
 
 export function buildJurorDisputeId(disputeId: BigInt, juror: Address): string {
   // @ts-ignore BigInt is actually a BytesArray under the hood
   return crypto
-    .keccak256(concat(new Bytes(disputeId.toI32()), juror))
+    .keccak256(Bytes.fromBigInt(disputeId).concat(juror))
     .toHexString();
 }
 
@@ -435,31 +436,31 @@ function buildAppealId(disputeId: BigInt, roundId: BigInt): BigInt {
 function castDisputeState(state: Bytes): string {
   switch (state.toI32()) {
     case 0:
-      return 'Drafting';
+      return "Drafting";
     case 1:
-      return 'Adjudicating';
+      return "Adjudicating";
     case 2:
-      return 'Ruled';
+      return "Ruled";
     default:
-      return 'Unknown';
+      return "Unknown";
   }
 }
 
 function castAdjudicationState(state: Bytes): string {
   switch (state.toI32()) {
     case 0:
-      return 'Invalid';
+      return "Invalid";
     case 1:
-      return 'Committing';
+      return "Committing";
     case 2:
-      return 'Revealing';
+      return "Revealing";
     case 3:
-      return 'Appealing';
+      return "Appealing";
     case 4:
-      return 'ConfirmingAppeal';
+      return "ConfirmingAppeal";
     case 5:
-      return 'Ended';
+      return "Ended";
     default:
-      return 'Unknown';
+      return "Unknown";
   }
 }
