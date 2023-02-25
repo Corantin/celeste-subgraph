@@ -1,6 +1,6 @@
-import { Evidence } from '../generated/schema';
-import { ethereum, Bytes, BigInt, Address } from '@graphprotocol/graph-ts';
-import { EvidenceSubmitted } from '../generated/templates/DisputeManager/Arbitrable';
+import { Evidence } from '../types/schema'
+import { ethereum, Bytes, BigInt, Address } from '@graphprotocol/graph-ts'
+import { EvidenceSubmitted } from '../types/templates/DisputeManager/Arbitrable'
 
 export function handleEvidenceSubmittedWithArbitrator(
   event: EvidenceSubmitted
@@ -13,7 +13,7 @@ export function handleEvidenceSubmittedWithArbitrator(
     event.params.disputeId,
     event.params.evidence,
     event.params.submitter
-  );
+  )
 }
 
 function handleEvidenceSubmitted(
@@ -22,12 +22,12 @@ function handleEvidenceSubmitted(
   data: Bytes,
   submitter: Address
 ): void {
-  let id = event.transaction.hash.toHexString() + event.logIndex.toHexString();
-  let evidence = new Evidence(id);
-  evidence.arbitrable = event.address.toHexString();
-  evidence.dispute = disputeId.toString();
-  evidence.data = data;
-  evidence.submitter = submitter;
-  evidence.createdAt = event.block.timestamp;
-  evidence.save();
+  let id = event.transaction.hash.toHexString() + event.logIndex.toHexString()
+  let evidence = new Evidence(id)
+  evidence.arbitrable = event.address.toHexString()
+  evidence.dispute = disputeId.toString()
+  evidence.data = data
+  evidence.submitter = submitter
+  evidence.createdAt = event.block.timestamp
+  evidence.save()
 }
