@@ -1,14 +1,14 @@
-import { concat } from '../helpers/bytes'
-import { buildId } from '../helpers/id'
-import { FeeMovement, TreasuryBalance } from '../types/schema'
+import { concat } from "../helpers/bytes"
+import { buildId } from "../helpers/id"
+import { FeeMovement, TreasuryBalance } from "../types/schema"
 import {
   Assign,
   Withdraw,
   Treasury,
-} from '../types/templates/Treasury/Treasury'
-import { crypto, BigInt, Address, ethereum } from '@graphprotocol/graph-ts'
+} from "../types/templates/Treasury/Treasury"
+import { crypto, BigInt, Address, ethereum } from "@graphprotocol/graph-ts"
 
-let WITHDRAW = 'Withdraw'
+let WITHDRAW = "Withdraw"
 
 export function handleAssign(event: Assign): void {
   updateTreasuryBalance(event.params.to, event.params.token, event)

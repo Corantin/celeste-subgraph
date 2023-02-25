@@ -1,18 +1,18 @@
-import { Address, BigInt, Bytes, log } from '@graphprotocol/graph-ts'
-import { createFeeMovement } from './Treasury'
+import { Address, BigInt, Bytes, log } from "@graphprotocol/graph-ts"
+import { createFeeMovement } from "./Treasury"
 import {
   JurorSubscriptionFee,
   SubscriptionModule,
   SubscriptionPeriod,
-} from '../types/schema'
+} from "../types/schema"
 import {
   FeesClaimed,
   FeeTokenChanged,
   PeriodPercentageYieldChanged,
   Subscriptions,
-} from '../types/templates/Subscriptions/Subscriptions'
+} from "../types/templates/Subscriptions/Subscriptions"
 
-let SUBSCRIPTIONS = 'Subscriptions'
+let SUBSCRIPTIONS = "Subscriptions"
 
 export function handleJurorFeesClaimed(event: FeesClaimed): void {
   createFeeMovement(
@@ -83,7 +83,7 @@ function loadOrCreateSubscriptionPeriod(
 
   if (period === null) {
     period = new SubscriptionPeriod(id)
-    period.feeToken = Bytes.fromHexString('0x')
+    period.feeToken = Bytes.fromHexString("0x")
     period.donatedFees = BigInt.fromI32(0)
     period.balanceCheckpoint = BigInt.fromI32(0)
     period.totalActiveBalance = BigInt.fromI32(0)
@@ -124,7 +124,7 @@ function loadOrCreateModule(address: Address): SubscriptionModule {
         periodPercentageYieldPotentialResult.value
     } else {
       subscriptionModule.periodPercentageYield = BigInt.fromI32(0)
-      log.warning('Could not get periodPercentageYield from subscription {}', [
+      log.warning("Could not get periodPercentageYield from subscription {}", [
         address.toHexString(),
       ])
     }

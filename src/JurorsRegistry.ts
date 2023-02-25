@@ -1,6 +1,6 @@
-import { buildId } from '../helpers/id'
-import { Juror, ANJMovement, JurorsRegistryModule } from '../types/schema'
-import { ethereum, Address, BigInt } from '@graphprotocol/graph-ts'
+import { buildId } from "../helpers/id"
+import { Juror, ANJMovement, JurorsRegistryModule } from "../types/schema"
+import { ethereum, Address, BigInt } from "@graphprotocol/graph-ts"
 import {
   Staked,
   Unstaked,
@@ -14,16 +14,16 @@ import {
   JurorTokensCollected,
   JurorSlashed,
   JurorsRegistry,
-} from '../types/templates/JurorsRegistry/JurorsRegistry'
+} from "../types/templates/JurorsRegistry/JurorsRegistry"
 
-let STAKE = 'Stake'
-let UNSTAKE = 'Unstake'
-let ACTIVATION = 'Activation'
-let DEACTIVATION = 'Deactivation'
-let LOCK = 'Lock'
-let UNLOCK = 'Unlock'
-let REWARD = 'Reward'
-let SLASH = 'Slash'
+let STAKE = "Stake"
+let UNSTAKE = "Unstake"
+let ACTIVATION = "Activation"
+let DEACTIVATION = "Deactivation"
+let LOCK = "Lock"
+let UNLOCK = "Unlock"
+let REWARD = "Reward"
+let SLASH = "Slash"
 
 export function handleStaked(event: Staked): void {
   updateJuror(event.params.user, event)
