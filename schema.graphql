@@ -270,7 +270,7 @@ type TreasuryBalance @entity {
 
 type BrightIdRegisterModule @entity {
   id: ID!
-  court: CourtConfig! 
+  court: CourtConfig!
   verifiers: [Bytes!]!
   registrationPeriod: BigInt!
   verificationTimestampVariance: BigInt!

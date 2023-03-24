@@ -29,8 +29,4 @@ else
 fi
 
 # Deploy subgraph
-graph deploy 1hive/celeste${SUBGRAPH_EXT} \
-  --ipfs ${IPFS_NODE} \
-  --node ${GRAPH_NODE} \
-  --access-token "$GRAPHKEY" > deploy-output.txt
-
+graph deploy --studio celeste-gnosis

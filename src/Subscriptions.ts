@@ -1,33 +1,51 @@
-import { Address, BigInt, Bytes } from '@graphprotocol/graph-ts'
-import { createFeeMovement } from './Treasury'
-import { JurorSubscriptionFee, SubscriptionModule, SubscriptionPeriod } from '../types/schema'
+import { Address, BigInt, Bytes, log } from "@graphprotocol/graph-ts"
+import { createFeeMovement } from "./Treasury"
+import {
+  JurorSubscriptionFee,
+  SubscriptionModule,
+  SubscriptionPeriod,
+} from "../types/schema"
 import {
   FeesClaimed,
   FeeTokenChanged,
   PeriodPercentageYieldChanged,
   Subscriptions,
-} from '../types/templates/Subscriptions/Subscriptions'
+} from "../types/templates/Subscriptions/Subscriptions"
 
-let SUBSCRIPTIONS = 'Subscriptions'
+let SUBSCRIPTIONS = "Subscriptions"
 
 export function handleJurorFeesClaimed(event: FeesClaimed): void {
-  createFeeMovement(SUBSCRIPTIONS, event.params.juror, event.params.jurorShare, event)
-  createJurorSubscriptionFee(event.params.juror, event.params.periodId, event.params.jurorShare)
+  createFeeMovement(
+    SUBSCRIPTIONS,
+    event.params.juror,
+    event.params.jurorShare,
+    event
+  )
+  createJurorSubscriptionFee(
+    event.params.juror,
+    event.params.periodId,
+    event.params.jurorShare
+  )
 }
 
 export function handleFeeTokenChanged(event: FeeTokenChanged): void {
-  let subscriptions = SubscriptionModule.load(event.address.toHexString())
+  let subscriptions = SubscriptionModule.load(event.address.toHexString())!
   subscriptions.feeToken = event.params.currentFeeToken
   subscriptions.save()
 }
 
-export function handlePeriodPercentageYieldChanged(event: PeriodPercentageYieldChanged): void {
-  let subscriptions = SubscriptionModule.load(event.address.toHexString())
+export function handlePeriodPercentageYieldChanged(
+  event: PeriodPercentageYieldChanged
+): void {
+  let subscriptions = SubscriptionModule.load(event.address.toHexString())!
   subscriptions.periodPercentageYield = event.params.currenetYield
   subscriptions.save()
 }
 
-export function updateCurrentSubscriptionPeriod(module: Address, timestamp: BigInt): void {
+export function updateCurrentSubscriptionPeriod(
+  module: Address,
+  timestamp: BigInt
+): void {
   let subscriptions = Subscriptions.bind(module)
   let periodId = subscriptions.getCurrentPeriodId()
 
@@ -35,8 +53,14 @@ export function updateCurrentSubscriptionPeriod(module: Address, timestamp: BigI
   subscriptionsModule.currentPeriod = periodId
   subscriptionsModule.save()
 
-  let previousPeriodId = periodId.equals(BigInt.fromI32(0)) ? periodId: periodId.minus(BigInt.fromI32(1))
-  let period = loadOrCreateSubscriptionPeriod(previousPeriodId, module, timestamp)
+  let previousPeriodId = periodId.equals(BigInt.fromI32(0))
+    ? periodId
+    : periodId.minus(BigInt.fromI32(1))
+  let period = loadOrCreateSubscriptionPeriod(
+    previousPeriodId,
+    module,
+    timestamp
+  )
   let previousPeriod = subscriptions.try_getPeriod(previousPeriodId)
   if (previousPeriod.reverted) {
     return
@@ -49,13 +73,17 @@ export function updateCurrentSubscriptionPeriod(module: Address, timestamp: BigI
   period.save()
 }
 
-function loadOrCreateSubscriptionPeriod(periodId: BigInt, instance: Address, timestamp: BigInt): SubscriptionPeriod | null {
+function loadOrCreateSubscriptionPeriod(
+  periodId: BigInt,
+  instance: Address,
+  timestamp: BigInt
+): SubscriptionPeriod {
   let id = periodId.toString()
   let period = SubscriptionPeriod.load(id)
 
   if (period === null) {
     period = new SubscriptionPeriod(id)
-    period.feeToken = Bytes.fromHexString("0x") as Bytes
+    period.feeToken = Bytes.fromHexString("0x")
     period.donatedFees = BigInt.fromI32(0)
     period.balanceCheckpoint = BigInt.fromI32(0)
     period.totalActiveBalance = BigInt.fromI32(0)
@@ -67,7 +95,11 @@ function loadOrCreateSubscriptionPeriod(periodId: BigInt, instance: Address, tim
   return period
 }
 
-function createJurorSubscriptionFee(juror: Address, periodId: BigInt, jurorShare: BigInt): void {
+function createJurorSubscriptionFee(
+  juror: Address,
+  periodId: BigInt,
+  jurorShare: BigInt
+): void {
   let feeId = buildJurorSubscriptionFeeId(juror, periodId)
   let fee = new JurorSubscriptionFee(feeId)
   fee.juror = juror.toHexString()
@@ -86,10 +118,19 @@ function loadOrCreateModule(address: Address): SubscriptionModule {
     subscriptionModule.currentPeriod = BigInt.fromI32(0)
     subscriptionModule.feeToken = subscriptions.currentFeeToken()
     subscriptionModule.periodDuration = subscriptions.periodDuration()
-    subscriptionModule.periodPercentageYield = subscriptions.periodPercentageYield()
+    let periodPercentageYieldPotentialResult = subscriptions.try_periodPercentageYield()
+    if (!periodPercentageYieldPotentialResult.reverted) {
+      subscriptionModule.periodPercentageYield =
+        periodPercentageYieldPotentialResult.value
+    } else {
+      subscriptionModule.periodPercentageYield = BigInt.fromI32(0)
+      log.warning("Could not get periodPercentageYield from subscription {}", [
+        address.toHexString(),
+      ])
+    }
   }
 
-  return subscriptionModule!
+  return subscriptionModule
 }
 
 function buildJurorSubscriptionFeeId(juror: Address, periodId: BigInt): string {

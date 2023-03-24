@@ -6,19 +6,21 @@ set -o errexit
 # Court known addresses
 court_staging=
 court_rinkeby=0xC2224D785D4e4bc92D5be6767A82d026ca2813fD
-court_xdai=0x44E4fCFed14E1285c9e0F6eae77D5fDd0F196f85
+court_gnosis=0x44E4fCFed14E1285c9e0F6eae77D5fDd0F196f85
+court_goerli=0x15ea6e0ab085b8d7d899672f10f213d53ce02150
 court_polygon=0xf0C8376065fadfACB706caFbaaC96B321069C015
 
 # Known block numbers
 start_block_staging=
 start_block_rinkeby=8250225
-start_block_xdai=14861364
+start_block_goerli=8187465
+start_block_gnosis=14861364
 start_block_polygon=21936374
 
 # Validate network
-networks=(rpc staging rinkeby xdai polygon)
+networks=(rpc staging goerli gnosis polygon)
 if [[ -z $NETWORK || ! " ${networks[@]} " =~ " ${NETWORK} " ]]; then
-  echo 'Please make sure the network provided is either rpc, staging, rinkeby, xdai or polygon'
+  echo 'Please make sure the network provided is either rpc, staging, rinkeby, gnosis or polygon'
   exit 1
 fi
 
@@ -26,7 +28,7 @@ fi
 if [[ "$NETWORK" = "rpc" ]]; then
   ENV='mainnet'
 elif [[ "$NETWORK" = "staging" ]]; then
-  ENV='rinkeby'
+  ENV='goerli'
 elif [[ "$NETWORK" = "polygon" ]]; then
   ENV='matic'
 else
