@@ -1,11 +1,11 @@
 import { concat } from "../helpers/bytes"
 import { buildId } from "../helpers/id"
-import { FeeMovement, TreasuryBalance } from "../types/schema"
+import { FeeMovement, TreasuryBalance } from "../generated/schema"
 import {
   Assign,
   Withdraw,
   Treasury,
-} from "../types/templates/Treasury/Treasury"
+} from "../generated/templates/Treasury/Treasury"
 import { crypto, BigInt, Address, ethereum } from "@graphprotocol/graph-ts"
 
 let WITHDRAW = "Withdraw"

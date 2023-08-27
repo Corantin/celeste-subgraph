@@ -1,0 +1,4 @@
+{
+  "prettier.semi": false,
+  "typescript.preferences.quoteStyle": "double"
+}

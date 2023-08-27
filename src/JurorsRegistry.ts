@@ -1,5 +1,5 @@
 import { buildId } from "../helpers/id"
-import { Juror, ANJMovement, JurorsRegistryModule } from "../types/schema"
+import { Juror, ANJMovement, JurorsRegistryModule } from "../generated/schema"
 import { ethereum, Address, BigInt } from "@graphprotocol/graph-ts"
 import {
   Staked,
@@ -14,7 +14,7 @@ import {
   JurorTokensCollected,
   JurorSlashed,
   JurorsRegistry,
-} from "../types/templates/JurorsRegistry/JurorsRegistry"
+} from "../generated/templates/JurorsRegistry/JurorsRegistry"
 
 let STAKE = "Stake"
 let UNSTAKE = "Unstake"

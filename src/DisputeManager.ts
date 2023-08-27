@@ -1,3 +1,4 @@
+import { concat } from "../helpers/bytes"
 import { buildId } from "../helpers/id"
 import { createFeeMovement } from "./Treasury"
 import { tryDecodingAgreementMetadata } from "../helpers/disputable"
@@ -7,7 +8,7 @@ import {
   BigInt,
   Address,
   ethereum,
-  log,
+  ByteArray,
 } from "@graphprotocol/graph-ts"
 import {
   AdjudicationRound,
@@ -17,7 +18,7 @@ import {
   Appeal,
   JurorDispute,
   JurorDraft,
-} from "../types/schema"
+} from "../generated/schema"
 import {
   DisputeManager,
   NewDispute,
@@ -31,7 +32,7 @@ import {
   RulingAppealed,
   RulingAppealConfirmed,
   RulingComputed,
-} from "../types/templates/DisputeManager/DisputeManager"
+} from "../generated/templates/DisputeManager/DisputeManager"
 
 const JUROR_FEES = "Juror"
 const APPEAL_FEES = "Appeal"
@@ -96,7 +97,7 @@ export function handleJurorDrafted(event: JurorDrafted): void {
 
 export function handleDisputeStateChanged(event: DisputeStateChanged): void {
   let dispute = Dispute.load(event.params.disputeId.toString())!
-  dispute.state = castDisputeState(Bytes.fromI32(event.params.state))
+  dispute.state = castDisputeState(event.params.state)
   dispute.save()
 
   updateRound(event.params.disputeId, dispute.lastRoundId, event)
@@ -107,7 +108,7 @@ export function handleDisputeStateChanged(event: DisputeStateChanged): void {
       event.params.disputeId,
       dispute.lastRoundId,
       event
-    )
+    )!
     round.draftedTermId = round.draftTermId.plus(round.delayedTerms)
     round.save()
   }
@@ -124,7 +125,7 @@ export function handleRulingAppealConfirmed(
   let manager = DisputeManager.bind(event.address)
   let dispute = new Dispute(event.params.disputeId.toString())
   let disputeResult = manager.getDispute(event.params.disputeId)
-  dispute.state = castDisputeState(new Bytes(disputeResult.value2))
+  dispute.state = castDisputeState(disputeResult.value2)
   dispute.lastRoundId = disputeResult.value4
   dispute.save()
 
@@ -199,7 +200,7 @@ function updateRound(
   roundNumber: BigInt,
   event: ethereum.Event
 ): void {
-  let round = loadOrCreateRound(disputeId, roundNumber, event)
+  let round = loadOrCreateRound(disputeId, roundNumber, event)!
   let manager = DisputeManager.bind(event.address)
   let result = manager.getRound(disputeId, roundNumber)
   round.number = roundNumber
@@ -212,7 +213,7 @@ function updateRound(
   round.settledPenalties = result.value5
   round.collectedTokens = result.value6
   round.coherentJurors = result.value7
-  round.state = castAdjudicationState(Bytes.fromI32(result.value8))
+  round.state = castAdjudicationState(result.value8)
   round.stateInt = result.value8
   round.save()
 }
@@ -221,7 +222,7 @@ function loadOrCreateRound(
   disputeId: BigInt,
   roundNumber: BigInt,
   event: ethereum.Event
-): AdjudicationRound {
+): AdjudicationRound | null {
   let id = buildRoundId(disputeId, roundNumber).toString()
   let round = AdjudicationRound.load(id)
 
@@ -234,7 +235,10 @@ function loadOrCreateRound(
   return round
 }
 
-function createJurorDispute(disputeId: BigInt, juror: Address): JurorDispute {
+function createJurorDispute(
+  disputeId: BigInt,
+  juror: Address
+): JurorDispute | null {
   let id = buildJurorDisputeId(disputeId, juror).toString()
   let jurorDispute = JurorDispute.load(id)
 
@@ -253,7 +257,7 @@ function updateAppeal(
   roundNumber: BigInt,
   event: ethereum.Event
 ): void {
-  let appeal = loadOrCreateAppeal(disputeId, roundNumber, event)
+  let appeal = loadOrCreateAppeal(disputeId, roundNumber, event)!
   let manager = DisputeManager.bind(event.address)
   let result = manager.getAppeal(disputeId, roundNumber)
   let nextRound = manager.getNextRoundDetails(disputeId, roundNumber)
@@ -364,7 +368,7 @@ function loadOrCreateAppeal(
   disputeId: BigInt,
   roundNumber: BigInt,
   event: ethereum.Event
-): Appeal {
+): Appeal | null {
   let id = buildAppealId(disputeId, roundNumber).toString()
   let appeal = Appeal.load(id)
 
@@ -414,15 +418,11 @@ export function decodeDisputeRoundId(disputeRoundId: BigInt): BigInt[] {
 }
 
 export function buildDraftId(roundId: BigInt, juror: Address): string {
-  // @ts-ignore BigInt is actually a BytesArray under the hood
   return crypto.keccak256(Bytes.fromBigInt(roundId).concat(juror)).toHexString()
 }
 
 export function buildJurorDisputeId(disputeId: BigInt, juror: Address): string {
-  // @ts-ignore BigInt is actually a BytesArray under the hood
-  return crypto
-    .keccak256(Bytes.fromBigInt(disputeId).concat(juror))
-    .toHexString()
+  return crypto.keccak256(Bytes.fromBigInt(disputeId).concat(juror)).toHexString()
 }
 
 function buildAppealId(disputeId: BigInt, roundId: BigInt): BigInt {
@@ -430,8 +430,8 @@ function buildAppealId(disputeId: BigInt, roundId: BigInt): BigInt {
   return buildRoundId(disputeId, roundId)
 }
 
-function castDisputeState(state: Bytes): string {
-  switch (state.toI32()) {
+function castDisputeState(state: i32): string {
+  switch (state) {
     case 0:
       return "Drafting"
     case 1:
@@ -443,8 +443,8 @@ function castDisputeState(state: Bytes): string {
   }
 }
 
-function castAdjudicationState(state: Bytes): string {
-  switch (state.toI32()) {
+function castAdjudicationState(state: i32): string {
+  switch (state) {
     case 0:
       return "Invalid"
     case 1:

@@ -1,6 +1,6 @@
 import { concat } from './bytes'
-import { Agreement } from '../types/templates/DisputeManager/Agreement'
-import { Disputable, Dispute } from '../types/schema'
+import { Agreement } from '../generated/templates/DisputeManager/Agreement'
+import { Disputable, Dispute } from '../generated/schema'
 import {
   crypto,
   Bytes,

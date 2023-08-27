@@ -1,6 +1,6 @@
-import { Evidence } from "../types/schema"
+import { Evidence } from "../generated/schema"
 import { ethereum, Bytes, BigInt, Address } from "@graphprotocol/graph-ts"
-import { EvidenceSubmitted } from "../types/templates/DisputeManager/Arbitrable"
+import { EvidenceSubmitted } from "../generated/templates/DisputeManager/Arbitrable"
 
 export function handleEvidenceSubmittedWithArbitrator(
   event: EvidenceSubmitted

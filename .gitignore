@@ -7,5 +7,6 @@ package-lock.json
 # Production
 build
 types
+generated
 subgraph.yaml
 deploy-output.txt

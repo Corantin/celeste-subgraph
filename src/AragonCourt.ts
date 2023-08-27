@@ -1,9 +1,9 @@
 import { BigInt, Bytes, Address, ethereum, log } from "@graphprotocol/graph-ts"
 import { BLACKLISTED_MODULES } from "../helpers/blacklisted-modules"
 import { updateCurrentSubscriptionPeriod } from "./Subscriptions"
-import { ERC20 as ERC20Contract } from "../types/AragonCourt/ERC20"
-import { JurorsRegistry as JurorsRegistryContract } from "../types/templates/JurorsRegistry/JurorsRegistry"
-import { BrightIdRegister as BrightIdRegisterContract } from "../types/AragonCourt/BrightIdRegister"
+import { ERC20 as ERC20Contract } from "../generated/AragonCourt/ERC20"
+import { JurorsRegistry as JurorsRegistryContract } from "../generated/templates/JurorsRegistry/JurorsRegistry"
+import { BrightIdRegister as BrightIdRegisterContract } from "../generated/AragonCourt/BrightIdRegister"
 import {
   ERC20,
   CourtModule,
@@ -11,7 +11,7 @@ import {
   CourtTerm,
   BrightIdRegisterModule,
   JurorsRegistryModule,
-} from "../types/schema"
+} from "../generated/schema"
 import {
   BrightIdRegister,
   DisputeManager,
@@ -19,7 +19,7 @@ import {
   Treasury,
   Voting,
   Subscriptions,
-} from "../types/templates"
+} from "../generated/templates"
 import {
   AragonCourt,
   Heartbeat,
@@ -28,7 +28,7 @@ import {
   ConfigGovernorChanged,
   FeesUpdaterChanged,
   ModulesGovernorChanged,
-} from "../types/AragonCourt/AragonCourt"
+} from "../generated/AragonCourt/AragonCourt"
 
 let DISPUTE_MANAGER_TYPE = "DisputeManager"
 let JURORS_REGISTRY_TYPE = "JurorsRegistry"

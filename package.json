@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "draw-schema": "./scripts/draw-schema.sh",
-    "build:graph": "./scripts/build-graph.sh",
+    "build:graph": "graph build",
     "build:graph:rpc": "NETWORK=rpc npm run build:graph",
     "build:graph:staging": "NETWORK=staging npm run build:graph",
     "build:graph:rinkeby": "NETWORK=rinkeby npm run build:graph",
@@ -16,7 +16,7 @@
     "build:manifest:goerli": "NETWORK=goerli npm run build:manifest",
     "build:manifest:gnosis": "NETWORK=gnosis npm run build:manifest",
     "build:manifest:polygon": "NETWORK=polygon npm run build:manifest",
-    "codegen": "./scripts/codegen.sh",
+    "codegen": "graph codegen",
     "codegen:rpc": "NETWORK=rpc npm run codegen",
     "codegen:ropsten": "NETWORK=ropsten npm run codegen",
     "codegen:staging": "NETWORK=staging npm run codegen",
@@ -30,7 +30,8 @@
     "deploy:rinkeby": "NETWORK=rinkeby npm run deploy",
     "deploy:goerli": "NETWORK=goerli npm run deploy",
     "deploy:gnosis": "NETWORK=gnosis npm run deploy",
-    "deploy:polygon": "NETWORK=polygon npm run deploy"
+    "deploy:polygon": "NETWORK=polygon npm run deploy",
+    "graph": "graph"
   },
   "devDependencies": {
     "graphqlviz": "^3.1.0"
