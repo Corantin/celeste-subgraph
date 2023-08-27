@@ -1,4 +1,4 @@
-import { JurorDraft, Vote } from "../generated/schema"
+import { JurorDraft, Vote } from "../types/schema"
 import {
   buildDraftId,
   decodeDisputeRoundId,
@@ -8,10 +8,10 @@ import {
   VoteCommitted,
   VoteLeaked,
   VoteRevealed,
-} from "../generated/templates/Voting/Voting"
+} from "../types/templates/Voting/Voting"
 import { Address, BigInt, ByteArray, ethereum } from "@graphprotocol/graph-ts"
-import { Voting } from "../generated/templates/Voting/Voting"
-import { Controller } from "../generated/templates/JurorsRegistry/Controller"
+import { Voting } from "../types/templates/Voting/Voting"
+import { Controller } from "../types/templates/JurorsRegistry/Controller"
 
 export function handleVoteCommitted(event: VoteCommitted): void {
   let disputeRoundId = event.params.voteId

@@ -4,13 +4,13 @@ import {
   JurorSubscriptionFee,
   SubscriptionModule,
   SubscriptionPeriod,
-} from "../generated/schema"
+} from "../types/schema"
 import {
   FeesClaimed,
   FeeTokenChanged,
   PeriodPercentageYieldChanged,
   Subscriptions,
-} from "../generated/templates/Subscriptions/Subscriptions"
+} from "../types/templates/Subscriptions/Subscriptions"
 
 let SUBSCRIPTIONS = "Subscriptions"
 

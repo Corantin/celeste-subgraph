@@ -1,7 +1,7 @@
 import { Address, BigInt, ethereum } from "@graphprotocol/graph-ts"
-import { Juror } from "../generated/schema"
-import { BrightIdRegister as BrightIdRegisterContract } from "../generated/AragonCourt/BrightIdRegister"
-import { Register } from "../generated/templates/BrightIdRegister/BrightIdRegister"
+import { Juror } from "../types/schema"
+import { BrightIdRegister as BrightIdRegisterContract } from "../types/AragonCourt/BrightIdRegister"
+import { Register } from "../types/templates/BrightIdRegister/BrightIdRegister"
 
 export function handleUserRegistered(event: Register): void {
   updateJuror(event.params.sender, event)

@@ -18,7 +18,7 @@ import {
   Appeal,
   JurorDispute,
   JurorDraft,
-} from "../generated/schema"
+} from "../types/schema"
 import {
   DisputeManager,
   NewDispute,
@@ -32,7 +32,7 @@ import {
   RulingAppealed,
   RulingAppealConfirmed,
   RulingComputed,
-} from "../generated/templates/DisputeManager/DisputeManager"
+} from "../types/templates/DisputeManager/DisputeManager"
 
 const JUROR_FEES = "Juror"
 const APPEAL_FEES = "Appeal"
@@ -422,7 +422,9 @@ export function buildDraftId(roundId: BigInt, juror: Address): string {
 }
 
 export function buildJurorDisputeId(disputeId: BigInt, juror: Address): string {
-  return crypto.keccak256(Bytes.fromBigInt(disputeId).concat(juror)).toHexString()
+  return crypto
+    .keccak256(Bytes.fromBigInt(disputeId).concat(juror))
+    .toHexString()
 }
 
 function buildAppealId(disputeId: BigInt, roundId: BigInt): BigInt {

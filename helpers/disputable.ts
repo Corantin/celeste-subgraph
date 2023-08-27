@@ -1,6 +1,6 @@
-import { concat } from './bytes'
-import { Agreement } from '../generated/templates/DisputeManager/Agreement'
-import { Disputable, Dispute } from '../generated/schema'
+import { concat } from "./bytes"
+import { Agreement } from "../types/templates/DisputeManager/Agreement"
+import { Disputable, Dispute } from "../types/schema"
 import {
   crypto,
   Bytes,
@@ -8,14 +8,14 @@ import {
   BigInt,
   log,
   ByteArray,
-} from '@graphprotocol/graph-ts'
+} from "@graphprotocol/graph-ts"
 
 // Rinkeby agreement-1hive.open.aragonpm.eth:
 // const AGREEMENT_OPEN_APP_ID = '41dd0b999b443a19321f2f34fe8078d1af95a1487b49af4c2ca57fb9e3e5331e'
 
 // xDai agreement.open.aragonpm.eth:
 const AGREEMENT_OPEN_APP_ID =
-  '34c62f3aec3073826f39c2c35e9a1297d9dbf3cc77472283106f09eee9cf47bf'
+  "34c62f3aec3073826f39c2c35e9a1297d9dbf3cc77472283106f09eee9cf47bf"
 
 const AGREEMENT_APP_ID_LENGTH = AGREEMENT_OPEN_APP_ID.length
 const AGREEMENT_DISPUTE_METADATA_LENGTH = 64 // "[APP_ID][CHALLENGE_ID]" = 32 + 32
@@ -42,7 +42,7 @@ export function tryDecodingAgreementMetadata(dispute: Dispute): void {
   if (
     challengeData.reverted ||
     challengeData.value.value1.toHexString() ==
-      '0x0000000000000000000000000000000000000000'
+      "0x0000000000000000000000000000000000000000"
   )
     return
 
